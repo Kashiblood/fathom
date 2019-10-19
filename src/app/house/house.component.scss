@@ -1,0 +1,32 @@
+@import '../../styles.scss';
+
+:host {
+  padding: $fathom-padding;
+  position: relative;
+}
+
+.polution-level {
+  position: absolute;
+  top: $fathom-padding;
+  right: $fathom-padding;
+}
+
+.timeline {
+  width: 100%;
+}
+
+.mirror-icon {
+  transform: scaleX(-1);
+}
+
+.past::ng-deep {
+  & .mat-slider-track-fill,
+  & .mat-slider-thumb,
+  & .mat-slider-thumb-label {
+    background: $fathom-card-background !important;
+  }
+
+  & .mat-slider-thumb-label-text {
+    color: $fathom-foreground;
+  }
+}

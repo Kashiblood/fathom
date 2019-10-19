@@ -1,0 +1,39 @@
+<div fxFlex fxLayout="column" fxLayoutAlign="center center">
+  <div class="polution-level" fxLayout="column" fxLayoutAlign="center center">
+    <mat-icon color="warn">sentiment_very_dissatisfied</mat-icon>
+    <mat-slider
+      vertical
+      thumbLabel
+      min="-100"
+      max="100"
+      [displayWith]="formatLabel"
+      [formControl]="polution"
+      (input)="polutionChanged($event)"
+      [color]="polutionReduced ? 'accent' : 'warn'"
+      tickInterval="auto"
+      aria-label="Percent change in polution."
+    ></mat-slider>
+    <mat-icon color="accent">sentiment_very_satisfied</mat-icon>
+  </div>
+  <div fxFlex></div>
+  <div class="water-level-display">
+    <p>hello world</p>
+  </div>
+  <div fxFlex></div>
+  <div class="timeline" fxLayout="row" fxLayoutAlign="center center">
+    <mat-icon class="mirror-icon">update</mat-icon>
+    <mat-slider
+      fxFlex
+      thumbLabel
+      [min]="timelineMin"
+      [max]="timelineMax"
+      [formControl]="timeline"
+      (input)="timelineChanged($event)"
+      [color]="polutionReduced ? 'accent' : 'warn'"
+      [ngClass]="{ past: inThePast }"
+      [tickInterval]="timelineWindow"
+      aria-label="Timeline slider."
+    ></mat-slider>
+    <mat-icon>update</mat-icon>
+  </div>
+</div>
