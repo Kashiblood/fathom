@@ -31,6 +31,13 @@ $fathom-background: map-get($fathom-theme, background);
 $fathom-card-background: mat-color($fathom-background, card);
 $fathom-background: mat-color($fathom-background, background);
 
+$fathom-primary: map-get($fathom-theme, primary);
+$fathom-accent: map-get($fathom-theme, accent);
+$fathom-warn: map-get($fathom-theme, warn);
+
+$fathom-primary-color: mat-color($fathom-primary);
+$fathom-primary-text-color: mat-color($fathom-primary, default-contrast);
+
 $fathom-foreground: map-get($fathom-theme, foreground);
 $fathom-foreground: mat-color($fathom-foreground, text);
 
@@ -38,6 +45,9 @@ $fathom-padding: 16px;
 
 html,
 body {
+  // Needed to make a clean entrance if long loads.
+  display: initial;
+
   height: 100%;
   background: $fathom-background;
   color: $fathom-foreground;
@@ -49,4 +59,43 @@ body {
 
 router-outlet + * {
   flex: 1 1 auto;
+}
+
+.loader {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $fathom-primary-color;
+  color: $fathom-primary-text-color;
+
+  &[finished] {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  & > svg #crack {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  &[loaded] > svg #crack {
+    opacity: 0;
+  }
+}
+
+.logo {
+  width: $fathom-padding * 8;
+}
+
+@keyframes logo-crack {
+  to {
+    stroke-dashoffset: 0;
+  }
 }

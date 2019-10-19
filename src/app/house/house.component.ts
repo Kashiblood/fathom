@@ -1,15 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatSliderChange, MatSliderModule } from '@angular/material';
-import {
-  trigger,
-  transition,
-  style,
-  query,
-  animateChild,
-  group,
-  animate
-} from '@angular/animations';
+import { MatSliderChange } from '@angular/material';
 
 @Component({
   selector: 'app-house',
@@ -24,7 +15,7 @@ export class HouseComponent implements OnInit {
   timelineWindow = 40;
   timelineMin = new Date().getUTCFullYear() - this.timelineWindow;
   timelineMax = new Date().getUTCFullYear() + this.timelineWindow;
-  inThePast = false;
+  inThePast = true;
 
   constructor() {}
 
@@ -39,6 +30,6 @@ export class HouseComponent implements OnInit {
   }
 
   timelineChanged(event: MatSliderChange) {
-    this.inThePast = event.value < new Date().getUTCFullYear();
+    this.inThePast = event.value <= new Date().getUTCFullYear();
   }
 }
