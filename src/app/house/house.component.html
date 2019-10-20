@@ -1,11 +1,17 @@
 <div fxFlex fxLayout="column" fxLayoutAlign="center center">
-  <div class="polution-level" fxLayout="column" fxLayoutAlign="center center">
+  <div
+    class="polution-level"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    matTooltip="Pollution"
+    matTooltipPosition="before"
+  >
     <mat-icon color="warn">sentiment_very_dissatisfied</mat-icon>
     <mat-slider
       vertical
       thumbLabel
-      min="-100"
-      max="100"
+      min="0"
+      max="200"
       [displayWith]="formatLabel"
       [formControl]="polution"
       (input)="polutionChanged($event)"
@@ -15,9 +21,30 @@
     ></mat-slider>
     <mat-icon color="accent">sentiment_very_satisfied</mat-icon>
   </div>
+  <mat-form-field
+    color="accent"
+    class="postal-code-selector"
+    appearance="outline"
+    (focus)="clearPostalCodeError()"
+  >
+    <mat-label>Postal Code</mat-label>
+    <input
+      matInput
+      [formControl]="postalCode"
+      type="text"
+      aria-label="Postal code selector."
+    />
+    <mat-icon matPrefix>home</mat-icon>
+    <mat-error *ngIf="postalCode.invalid">{{
+      getPostalCodeErrorMessage()
+    }}</mat-error>
+  </mat-form-field>
   <div fxFlex></div>
-  <div class="water-level-display">
-    <p>hello world</p>
+  <div class="water-level-display" fxLayoutAlign="center center">
+    <img
+      class="house"
+      src="../../assets/outsourced/low-poly-house/lowpoly-3494476_1920.png"
+    />
   </div>
   <div fxFlex></div>
   <div class="timeline" fxLayout="row" fxLayoutAlign="center center">

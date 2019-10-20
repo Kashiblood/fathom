@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { HouseComponent } from './house/house.component';
 import { FurryFriendsComponent } from './furry-friends/furry-friends.component';
+import { HouseComponent } from './house/house.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +19,19 @@ export const routes: Routes = [
     data: {
       label: 'Furry Friends',
       animation: 'furryFriends'
+    }
+  },
+  {
+    path: '',
+    redirectTo: '/house',
+    pathMatch: 'prefix'
+  },
+  {
+    path: '**',
+    component: HouseComponent,
+    data: {
+      label: 'My House',
+      animation: 'house'
     }
   }
 ];

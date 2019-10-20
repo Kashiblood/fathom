@@ -1,9 +1,4 @@
-<div
-  class="mat-typography"
-  fxFill
-  fxLayout="column"
-  [@routeAnimations]="prepareRoute(outlet)"
->
+<div class="mat-typography" fxFill fxLayout="column">
   <nav mat-tab-nav-bar backgroundColor="primary">
     <a
       mat-tab-link
@@ -16,6 +11,13 @@
       {{ link.data.label }}
     </a>
   </nav>
-
-  <router-outlet #outlet="outlet"></router-outlet>
+  <div
+    [@showContent]="loaded"
+    fxFlex
+    fxLayout="column"
+    [@routeAnimations]="prepareRoute(outlet)"
+  >
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>
+<div [@intro]="loaded" class="intro"></div>
