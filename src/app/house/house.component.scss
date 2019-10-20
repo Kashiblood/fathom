@@ -33,15 +33,15 @@
   transform: scaleX(-1);
 }
 
-.past::ng-deep {
+.past:not(.mat-slider-disabled)::ng-deep {
   & .mat-slider-track-fill,
   & .mat-slider-thumb,
   & .mat-slider-thumb-label {
-    background: $fathom-card-background !important;
+    background: $fathom-foreground !important;
   }
 
   & .mat-slider-thumb-label-text {
-    color: $fathom-foreground;
+    color: black;
   }
 }
 
