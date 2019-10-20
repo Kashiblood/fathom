@@ -175,7 +175,7 @@ export class HouseComponent implements OnInit, OnDestroy {
   }
 
   formatLabel(value: number) {
-    return `${Math.abs(value)}%`;
+    return `${Math.abs(value) - 100}%`;
   }
 
   polutionChanged(event: MatSliderChange) {
