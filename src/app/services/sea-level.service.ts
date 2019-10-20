@@ -8,5 +8,6 @@ export class SeaLevelService {
 
   getSeaLevel(year: number, polution: number, maxPolution: number = 200) {
     // TODO: this should return the total sea level change from 2004 to the year given
+    return -30 + (100 + 30) * Math.random();
   }
 }
