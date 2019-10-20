@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import * as historicalData from '../../../data/yearlyData.json';
-import * as futureHighData from '../../../data/futureHighData.json';
-import * as futureLowData from '../../../data/futureLowData.json';
+import { historicalData } from '../data/yearlyData';
+import { futureLowData } from '../data/futureLowData';
+import { futureHighData } from '../data/futureHighData';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,20 @@ import * as futureLowData from '../../../data/futureLowData.json';
 export class SeaLevelService {
   constructor() {}
 
-  getSeaLevel(year: number, polution: number, maxPolution: number = 200) {
+  getSeaLevel(
+    year: number,
+    polution: number,
+    maxPolution: number = 200
+  ): number {
     if (year > new Date().getUTCFullYear()) {
       const pd = polution / maxPolution;
       const value =
         futureLowData[year] + pd * (futureHighData[year] - futureLowData[year]);
+      console.log(value);
       return value / 1000;
     } else {
-      return historicalData[year] / 1000;
+      console.log(historicalData[year].globalMeanVariation);
+      return historicalData[year].globalMeanVariation / 1000;
     }
   }
 }
