@@ -5,6 +5,12 @@
   position: relative;
 }
 
+.postal-code-selector {
+  overflow: hidden;
+  margin-right: $fathom-padding * 4;
+  width: calc(100% - #{$fathom-padding * 4});
+}
+
 .polution-level {
   position: absolute;
   top: $fathom-padding;
@@ -29,4 +35,8 @@
   & .mat-slider-thumb-label-text {
     color: $fathom-foreground;
   }
+}
+
+.house {
+  width: 80%;
 }
