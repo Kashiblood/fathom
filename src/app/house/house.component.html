@@ -14,6 +14,11 @@
     fxLayoutAlign="center center"
     matTooltip="Pollution"
     matTooltipPosition="before"
+    *ngIf="!polution.disabled"
+    [@slideScaleOpenClose]="{
+      value: null,
+      params: { size: '48px' }
+    }"
   >
     <mat-icon color="warn">sentiment_very_dissatisfied</mat-icon>
     <mat-slider
@@ -35,6 +40,7 @@
     class="postal-code-selector"
     appearance="outline"
     (focus)="clearPostalCodeError()"
+    [ngStyle]="{ 'margin-right': polution.disabled ? 0 : null }"
   >
     <mat-label>Postal Code</mat-label>
     <input
@@ -87,20 +93,27 @@
     </div>
   </div>
   <div fxFlex></div>
-  <div class="timeline" fxLayout="row" fxLayoutAlign="center center">
-    <mat-icon class="mirror-icon">update</mat-icon>
-    <mat-slider
-      fxFlex
-      thumbLabel
-      [min]="timelineMin"
-      [max]="timelineMax"
-      [formControl]="timeline"
-      (input)="timelineChanged($event)"
-      [color]="polutionReduced ? 'accent' : 'warn'"
-      [ngClass]="{ past: inThePast }"
-      [tickInterval]="10"
-      aria-label="Timeline slider."
-    ></mat-slider>
-    <mat-icon>update</mat-icon>
+  <div class="timeline">
+    <div
+      @fadeInOut
+      *ngIf="!timeline.disabled"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <mat-icon class="mirror-icon">update</mat-icon>
+      <mat-slider
+        fxFlex
+        thumbLabel
+        [min]="timelineMin"
+        [max]="timelineMax"
+        [formControl]="timeline"
+        (input)="timelineChanged($event)"
+        [color]="polutionReduced ? 'accent' : 'warn'"
+        [ngClass]="{ past: inThePast }"
+        [tickInterval]="10"
+        aria-label="Timeline slider."
+      ></mat-slider>
+      <mat-icon>update</mat-icon>
+    </div>
   </div>
 </div>

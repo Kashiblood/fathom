@@ -47,6 +47,34 @@ interface LocationData {
           })
         )
       ])
+    ]),
+    trigger('slideScaleOpenClose', [
+      transition(':enter', [
+        style({
+          width: '0px',
+          transform: 'scale(0.01)'
+        }),
+        animate(
+          `200ms ease-in-out`,
+          style({
+            width: '{{size}}',
+            transform: 'scale(1)'
+          })
+        )
+      ]),
+      transition(':leave', [
+        style({
+          width: '{{size}}',
+          transform: 'scale(1)'
+        }),
+        animate(
+          `200ms ease-in-out`,
+          style({
+            width: '0px',
+            transform: 'scale(0.01)'
+          })
+        )
+      ])
     ])
   ]
 })
