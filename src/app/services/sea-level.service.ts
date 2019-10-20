@@ -14,9 +14,9 @@ export class SeaLevelService {
       const pd = polution / maxPolution;
       const value =
         futureLowData[year] + pd * (futureHighData[year] - futureLowData[year]);
-      return value;
+      return value / 1000;
     } else {
-      return historicalData[year];
+      return historicalData[year] / 1000;
     }
   }
 }
