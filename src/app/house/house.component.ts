@@ -1,20 +1,9 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormControl,
-  ValidationErrors,
-  Validators
-} from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { MatSliderChange } from '@angular/material';
-import { combineLatest, interval, merge, Subscription } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-  mergeMap,
-  tap
-} from 'rxjs/operators';
+import { combineLatest, interval, merge, Observable, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, map, mergeMap, shareReplay, tap } from 'rxjs/operators';
 
 import { LatLongService } from '../services/lat-long.service';
 import { SeaLevelService } from '../services/sea-level.service';
@@ -25,10 +14,41 @@ interface SeaLevelForm {
   timeline: number;
 }
 
+interface LocationData {
+  elevation: number;
+  seaLevel: number;
+}
+
 @Component({
   selector: 'app-house',
   templateUrl: './house.component.html',
-  styleUrls: ['./house.component.scss']
+  styleUrls: ['./house.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({
+          opacity: 0
+        }),
+        animate(
+          `300ms ease-in-out`,
+          style({
+            opacity: 1
+          })
+        )
+      ]),
+      transition(':leave', [
+        style({
+          opacity: 1
+        }),
+        animate(
+          `250ms ease-in-out`,
+          style({
+            opacity: 0
+          })
+        )
+      ])
+    ])
+  ]
 })
 export class HouseComponent implements OnInit, OnDestroy {
   postalCode: FormControl;
@@ -38,13 +58,15 @@ export class HouseComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription();
 
   polutionReduced = false;
+  // TODO: switch this to getting timeline min/max from SeaLevelService.
   // timelineWindow = 40;
   timelineMin = 1993; // new Date().getUTCFullYear() - this.timelineWindow;
   timelineMax = 2100; // new Date().getUTCFullYear() + this.timelineWindow;
   inThePast = true;
-  waterLevel = null;
+  locationData: Observable<LocationData>;
   pixelsPerMeter = 20;
   defaultPolution = 100;
+  loading = false;
 
   constructor(
     private latLongService: LatLongService,
@@ -53,9 +75,8 @@ export class HouseComponent implements OnInit, OnDestroy {
     const checkIfValidPostalCode = (postalCode: string): boolean => {
       return (
         typeof postalCode === 'string' &&
-        /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)|([1-9][0-9]{3}\s?[a-zA-Z]{2})$/.test(
-          postalCode
-        )
+        (/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/.test(postalCode) ||
+          /^([1-9][0-9]{3}\s?[a-zA-Z]{2})$/.test(postalCode))
       );
     };
 
@@ -79,32 +100,45 @@ export class HouseComponent implements OnInit, OnDestroy {
     this.polution = new FormControl('');
     this.timeline = new FormControl(new Date().getUTCFullYear());
 
-    this.subscriptions.add(
+    this.locationData = combineLatest([
+      this.postalCode.valueChanges.pipe(
+        debounceTime(300),
+        tap(a => {
+          this.loading = true;
+          console.log('there', a);
+        }),
+        filter(postalCode => checkIfValidPostalCode(postalCode)),
+        distinctUntilChanged((a, b) => {
+          console.log(a, b, a === b);
+          return a === b;
+        }),
+        tap(a => console.log('here', a)),
+        mergeMap(postalCode => this.latLongService.getLatLong(postalCode)),
+        mergeMap(latLong => this.latLongService.getElevation(latLong))
+      ),
       combineLatest([
-        this.postalCode.valueChanges.pipe(
-          debounceTime(300),
-          filter(postalCode => checkIfValidPostalCode(postalCode)),
-          distinctUntilChanged(),
-          tap(() => console.log('here')),
-          mergeMap(postalCode => this.latLongService.getLatLong(postalCode)),
-          mergeMap(latLong => this.latLongService.getElevation(latLong))
+        this.polution.valueChanges,
+        this.timeline.valueChanges
+      ]).pipe(
+        map(([polution, timeline]) =>
+          this.seaLevelService.getSeaLevel(timeline, polution)
         ),
-        combineLatest([
-          this.polution.valueChanges,
-          this.timeline.valueChanges
-        ]).pipe(
-          map(([polution, timeline]) =>
-            this.seaLevelService.getSeaLevel(timeline, polution)
-          )
-        )
-      ]).subscribe(([elevation, waterLevel]) => {
-        console.log(elevation);
-        console.log(waterLevel);
-        this.waterLevel = elevation - waterLevel;
-      })
+        distinctUntilChanged()
+      )
+    ]).pipe(
+      map(([elevation, seaLevel]) => {
+        console.log('at end');
+        this.loading = false;
+        return {
+          elevation: elevation - seaLevel,
+          seaLevel
+        };
+      }),
+      shareReplay()
     );
     this.timeline.setValue(new Date().getUTCFullYear());
     this.polution.setValue(this.defaultPolution);
+    this.polution.disable();
 
     // TODO: This merge with interval is due to a bug with form controls not sending initial status,
     // remove when the following is fixed: https://github.com/angular/angular/issues/14542
@@ -117,18 +151,16 @@ export class HouseComponent implements OnInit, OnDestroy {
           distinctUntilChanged(),
           tap(status => {
             if (status === 'VALID') {
-              this.polution.enable();
+              if (this.inThePast) {
+                this.polution.disable();
+              } else {
+                this.polution.enable();
+              }
+
               this.timeline.enable();
             } else {
               this.polution.disable();
-              // this.polution.setValue(this.defaultPolution, {
-              //   emitEvent: false
-              // });
-
               this.timeline.disable();
-              // this.timeline.setValue(new Date().getUTCFullYear(), {
-              //   emitEvent: false
-              // });
             }
           })
         )
@@ -152,6 +184,11 @@ export class HouseComponent implements OnInit, OnDestroy {
 
   timelineChanged(event: MatSliderChange) {
     this.inThePast = event.value <= new Date().getUTCFullYear();
+    if (this.inThePast) {
+      this.polution.disable();
+    } else {
+      this.polution.enable();
+    }
   }
 
   clearPostalCodeError() {

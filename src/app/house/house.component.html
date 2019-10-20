@@ -1,4 +1,13 @@
 <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+  <mat-progress-bar
+    class="loading-bar"
+    color="accent"
+    [mode]="loading ? 'query' : 'determinate'"
+    value="0"
+    *ngIf="loading"
+    @fadeInOut
+  >
+  </mat-progress-bar>
   <div
     class="polution-level"
     fxLayout="column"
@@ -55,15 +64,25 @@
       <div
         class="base-water"
         [ngStyle]="{
-          height: postalCode.valid
-            ? 'calc(50vh - 48px - ' + waterLevel * pixelsPerMeter + 'px'
-            : 0
+          height:
+            postalCode.valid && !loading
+              ? 'calc(50vh - 48px - ' +
+                (locationData | async)?.elevation * pixelsPerMeter +
+                'px'
+              : 0
         }"
         fxLayoutAlign="center"
       >
-        <p class="elevation-info mat-body-strong" *ngIf="waterLevel">
-          Elevation: {{ waterLevel | number: '1.0-2' }}
-        </p>
+        <span *ngIf="locationData | async as data">
+          <span *ngIf="postalCode.valid && !loading" @fadeInOut>
+            <p class="elevation-info mat-body-strong">
+              Elevation: {{ data.elevation | number: '1.0-2' }}m
+            </p>
+            <p class="sea-level-info mat-body-strong">
+              Sea Level Increase: {{ data.seaLevel | number: '1.0-2' }}m
+            </p>
+          </span>
+        </span>
       </div>
     </div>
   </div>

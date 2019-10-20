@@ -12,7 +12,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $fathom-primary: mat-palette($mat-deep-purple, 600, 500, 800);
-$fathom-accent: mat-palette($mat-lime, 500, 400, 700);
+$fathom-accent: mat-palette($mat-lime, 500, 50, 700);
 
 // The warn palette is optional (defaults to red).
 $fathom-warn: mat-palette($mat-red);
@@ -49,7 +49,7 @@ body {
   display: initial;
 
   height: 100%;
-  background: $fathom-background;
+  background: linear-gradient($fathom-primary-color, #3e699f);
   color: $fathom-foreground;
 }
 body {

@@ -7,6 +7,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
+  MatProgressBarModule,
   MatSliderModule,
   MatTabsModule,
   MatToolbarModule,
@@ -36,7 +37,8 @@ import { HouseComponent } from './house/house.component';
     MatFormFieldModule,
     MatInputModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

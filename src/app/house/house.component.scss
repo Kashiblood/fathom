@@ -5,6 +5,11 @@
   position: relative;
 }
 
+.loading-bar {
+  position: absolute;
+  top: 0;
+}
+
 .postal-code-selector {
   overflow: hidden;
   margin-right: $fathom-padding * 4;
@@ -40,12 +45,8 @@
   }
 }
 
-.water-level-display {
-  // position: relative;
-}
-
 .house {
-  width: 80%;
+  width: 75vmin;
   z-index: 3;
   animation: island-bob 2s ease-in-out alternate infinite;
 }
@@ -57,23 +58,27 @@
 }
 
 .base-water {
-  background-color: #162d60;
+  background: linear-gradient(
+    0deg,
+    #162d60 0%,
+    #162d60 calc(100% - 25px),
+    rgba(0, 0, 0, 0) 100%
+  );
   opacity: 0.7;
   height: 300px;
   max-height: calc(100vh - 64px - 48px - 72px);
-  min-height: 64px;
+  min-height: 64px * 2;
   transition: height 1s ease-in-out;
   position: relative;
   z-index: 3;
+  padding-top: 10px;
 }
 
 section {
   position: relative;
   width: 100%;
   height: 64px;
-  bottom: 0;
-  // z-index: -10;
-  // background: #3586ff;
+  bottom: -30px;
   overflow: hidden;
 }
 section .wave {
@@ -82,8 +87,7 @@ section .wave {
   left: 0;
   width: 100%;
   height: 64px;
-  background: url('../../assets/wave_clean.svg');
-  // background-size: 1000px 100px;
+  background: url('../../assets/wave_transparent_clean.svg');
 }
 section .wave.wave1 {
   animation: animate 30s linear infinite;
