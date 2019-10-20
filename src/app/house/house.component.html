@@ -56,9 +56,7 @@
         class="base-water"
         [ngStyle]="{
           height: postalCode.valid
-            ? 'calc(50vh - 48px - 16px - ' +
-              waterLevel * pixelsPerMilimeter +
-              'px'
+            ? 'calc(50vh - 48px - ' + waterLevel * pixelsPerMeter + 'px'
             : 0
         }"
         fxLayoutAlign="center"
@@ -81,7 +79,7 @@
       (input)="timelineChanged($event)"
       [color]="polutionReduced ? 'accent' : 'warn'"
       [ngClass]="{ past: inThePast }"
-      [tickInterval]="timelineWindow"
+      [tickInterval]="10"
       aria-label="Timeline slider."
     ></mat-slider>
     <mat-icon>update</mat-icon>

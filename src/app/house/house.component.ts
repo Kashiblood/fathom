@@ -1,8 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  ValidationErrors,
+  Validators
+} from '@angular/forms';
 import { MatSliderChange } from '@angular/material';
 import { combineLatest, interval, merge, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, mergeMap, tap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  mergeMap,
+  tap
+} from 'rxjs/operators';
 
 import { LatLongService } from '../services/lat-long.service';
 import { SeaLevelService } from '../services/sea-level.service';
@@ -31,7 +43,7 @@ export class HouseComponent implements OnInit, OnDestroy {
   timelineMax = 2100; // new Date().getUTCFullYear() + this.timelineWindow;
   inThePast = true;
   waterLevel = null;
-  pixelsPerMilimeter = 1;
+  pixelsPerMeter = 20;
   defaultPolution = 100;
 
   constructor(
@@ -41,7 +53,9 @@ export class HouseComponent implements OnInit, OnDestroy {
     const checkIfValidPostalCode = (postalCode: string): boolean => {
       return (
         typeof postalCode === 'string' &&
-        /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/.test(postalCode)
+        /^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)|([1-9][0-9]{3}\s?[a-zA-Z]{2})$/.test(
+          postalCode
+        )
       );
     };
 
