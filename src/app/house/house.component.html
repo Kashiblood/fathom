@@ -65,16 +65,16 @@
         class="base-water"
         [ngStyle]="{
           height:
-            postalCode.valid && !loading
+            postalCode.valid && !loading && !preloading
               ? 'calc(50vh - 48px - ' +
                 (locationData | async)?.elevation * pixelsPerMeter +
-                'px'
+                'px + 20px'
               : 0
         }"
         fxLayoutAlign="center"
       >
         <span *ngIf="locationData | async as data">
-          <span *ngIf="postalCode.valid && !loading" @fadeInOut>
+          <span *ngIf="postalCode.valid && !loading && !preloading" @fadeInOut>
             <p class="elevation-info mat-body-strong">
               Elevation: {{ data.elevation | number: '1.0-2' }}m
             </p>

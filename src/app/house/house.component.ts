@@ -66,6 +66,7 @@ export class HouseComponent implements OnInit, OnDestroy {
   locationData: Observable<LocationData>;
   pixelsPerMeter = 20;
   defaultPolution = 100;
+  preloading = false;
   loading = false;
 
   constructor(
@@ -104,17 +105,25 @@ export class HouseComponent implements OnInit, OnDestroy {
       this.postalCode.valueChanges.pipe(
         debounceTime(300),
         tap(a => {
-          this.loading = true;
+          this.preloading = true;
           console.log('there', a);
         }),
         filter(postalCode => checkIfValidPostalCode(postalCode)),
-        distinctUntilChanged((a, b) => {
-          console.log(a, b, a === b);
-          return a === b;
+        tap(a => {
+          this.loading = true;
+          console.log('here', a);
         }),
-        tap(a => console.log('here', a)),
         mergeMap(postalCode => this.latLongService.getLatLong(postalCode)),
-        mergeMap(latLong => this.latLongService.getElevation(latLong))
+        mergeMap(latLong => this.latLongService.getElevation(latLong)),
+        tap(() => {
+          if (this.inThePast) {
+            this.polution.disable();
+          } else {
+            this.polution.enable();
+          }
+
+          this.timeline.enable();
+        })
       ),
       combineLatest([
         this.polution.valueChanges,
@@ -128,6 +137,7 @@ export class HouseComponent implements OnInit, OnDestroy {
     ]).pipe(
       map(([elevation, seaLevel]) => {
         console.log('at end');
+        this.preloading = false;
         this.loading = false;
         return {
           elevation: elevation - seaLevel,
@@ -150,15 +160,7 @@ export class HouseComponent implements OnInit, OnDestroy {
         .pipe(
           distinctUntilChanged(),
           tap(status => {
-            if (status === 'VALID') {
-              if (this.inThePast) {
-                this.polution.disable();
-              } else {
-                this.polution.enable();
-              }
-
-              this.timeline.enable();
-            } else {
+            if (status !== 'VALID') {
               this.polution.disable();
               this.timeline.disable();
             }
