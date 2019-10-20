@@ -52,7 +52,21 @@
         <div class="wave wave3"></div>
         <div class="wave wave4"></div>
       </section>
-      <div class="base-water"></div>
+      <div
+        class="base-water"
+        [ngStyle]="{
+          height: postalCode.valid
+            ? 'calc(50vh - 48px - 16px - ' +
+              waterLevel * pixelsPerMilimeter +
+              'px'
+            : 0
+        }"
+        fxLayoutAlign="center"
+      >
+        <p class="elevation-info mat-body-strong" *ngIf="waterLevel">
+          Elevation: {{ waterLevel | number: '1.0-2' }}
+        </p>
+      </div>
     </div>
   </div>
   <div fxFlex></div>

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { MatSliderChange } from '@angular/material';
-import { combineLatest, Subscription } from 'rxjs';
+import { combineLatest, interval, merge, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map, mergeMap, tap } from 'rxjs/operators';
 
 import { LatLongService } from '../services/lat-long.service';
@@ -30,7 +30,9 @@ export class HouseComponent implements OnInit, OnDestroy {
   timelineMin = 1993; // new Date().getUTCFullYear() - this.timelineWindow;
   timelineMax = 2100; // new Date().getUTCFullYear() + this.timelineWindow;
   inThePast = true;
-  waterLevel = 0;
+  waterLevel = null;
+  pixelsPerMilimeter = 1;
+  defaultPolution = 100;
 
   constructor(
     private latLongService: LatLongService,
@@ -60,16 +62,16 @@ export class HouseComponent implements OnInit, OnDestroy {
       ]),
       updateOn: 'change'
     });
-    this.polution = new FormControl();
+    this.polution = new FormControl('');
     this.timeline = new FormControl(new Date().getUTCFullYear());
 
     this.subscriptions.add(
       combineLatest([
         this.postalCode.valueChanges.pipe(
           debounceTime(300),
-          tap(() => (this.waterLevel = 0)),
           filter(postalCode => checkIfValidPostalCode(postalCode)),
           distinctUntilChanged(),
+          tap(() => console.log('here')),
           mergeMap(postalCode => this.latLongService.getLatLong(postalCode)),
           mergeMap(latLong => this.latLongService.getElevation(latLong))
         ),
@@ -88,7 +90,36 @@ export class HouseComponent implements OnInit, OnDestroy {
       })
     );
     this.timeline.setValue(new Date().getUTCFullYear());
-    this.polution.setValue(100);
+    this.polution.setValue(this.defaultPolution);
+
+    // TODO: This merge with interval is due to a bug with form controls not sending initial status,
+    // remove when the following is fixed: https://github.com/angular/angular/issues/14542
+    this.subscriptions.add(
+      merge(
+        interval(250).pipe(map(() => this.postalCode.status)),
+        this.postalCode.statusChanges
+      )
+        .pipe(
+          distinctUntilChanged(),
+          tap(status => {
+            if (status === 'VALID') {
+              this.polution.enable();
+              this.timeline.enable();
+            } else {
+              this.polution.disable();
+              // this.polution.setValue(this.defaultPolution, {
+              //   emitEvent: false
+              // });
+
+              this.timeline.disable();
+              // this.timeline.setValue(new Date().getUTCFullYear(), {
+              //   emitEvent: false
+              // });
+            }
+          })
+        )
+        .subscribe()
+    );
   }
 
   ngOnInit() {}
