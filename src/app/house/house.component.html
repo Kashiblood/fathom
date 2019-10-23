@@ -74,7 +74,7 @@
             postalCode.valid && !loading && !preloading
               ? 'calc(50vh - 48px - ' +
                 (locationData | async)?.elevation * pixelsPerMeter +
-                'px + 20px'
+                'px - 30px'
               : 0
         }"
         fxLayoutAlign="center"

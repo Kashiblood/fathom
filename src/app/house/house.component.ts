@@ -176,6 +176,7 @@ export class HouseComponent implements OnInit, OnDestroy {
     );
     this.timeline.setValue(new Date().getUTCFullYear());
     this.polution.setValue(this.defaultPolution);
+    this.timeline.disable();
     this.polution.disable();
 
     // TODO: This merge with interval is due to a bug with form controls not sending initial status,

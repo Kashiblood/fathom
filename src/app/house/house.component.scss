@@ -48,8 +48,7 @@
 }
 
 .house {
-  height: 75vmin;
-  max-height: 500px; // TODO: make this more like calc(100% - other elements).
+  width: 320px;
   z-index: 3;
   animation: island-bob 2s ease-in-out alternate infinite;
 }
