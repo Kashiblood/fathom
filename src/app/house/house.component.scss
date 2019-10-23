@@ -89,7 +89,7 @@ section .wave {
   left: 0;
   width: 100%;
   height: 64px;
-  background: url('../../assets/wave_transparent_clean.svg');
+  background: url('/assets/wave_transparent_clean.svg');
 }
 section .wave.wave1 {
   animation: animate 30s linear infinite;
@@ -107,7 +107,7 @@ section .wave.wave2 {
 }
 section .wave.wave3 {
   animation: animate 30s linear infinite;
-  background: url('../../assets/wave_light_clean.svg');
+  background: url('/assets/wave_light_clean.svg');
   z-index: 1;
   opacity: 0.2;
   animation-delay: -5s;
