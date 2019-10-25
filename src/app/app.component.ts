@@ -7,64 +7,50 @@ import { FormControl } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('demo', [
-      transition('* => true', [
-        query('@teamPage', group([animateChild()]))
-        // TODO: each page here (should make it easier to test)
-      ])
-    ]),
     trigger('teamPage', [
+      state(
+        'false',
+        style({
+          height: '100%',
+          width: '100%',
+          'border-bottom-right-radius': '0',
+          overflow: 'hidden'
+        })
+      ),
       state(
         'true',
         style({
           height: '10vmin',
-          width: '80vmin',
+          width: '60vmin',
           'border-bottom-right-radius': '10vmin',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          opacity: 0
         })
       ),
       transition('* => true', [
-        query('@logo', group([animateChild()])),
-        query('@teamName', group([animateChild()])),
-        query('@teamMembers', group([animateChild()])),
         group([
+          query('@*', animateChild()),
           animate(
             '400ms ease-out',
             style({
               height: '10vmin',
-              width: '80vmin',
+              width: '60vmin',
               'border-bottom-right-radius': '10vmin',
               overflow: 'hidden'
             })
+          ),
+          animate(
+            '200ms 800ms ease-out',
+            style({
+              opacity: 0
+            })
           )
-          // query('.logo', [
-          //   animate(
-          //     '400ms ease-out',
-          //     style({
-          //       width: '6vmin',
-          //       top: '20%'
-          //     })
-          //   )
-          // ])
-          // query('.team-name', [
-          //   style({
-          //     'font-size': '6vmin',
-          //     top: 'calc(20% - 2vmin)'
-          //   }),
-          //   animate(
-          //     '400ms ease-out',
-          //     style({
-          //       'font-size': '6vmin',
-          //       top: 'calc(20% - 2vmin)'
-          //     })
-          //   )
-          // ])
         ])
       ])
     ]),
     trigger('logo', [
       state(
-        'false',
+        '*',
         style({
           opacity: 0,
           width: '20vmin',
@@ -75,7 +61,7 @@ import { FormControl } from '@angular/forms';
         })
       ),
       state(
-        'true',
+        'phase1',
         style({
           opacity: 1,
           width: '10vmin',
@@ -85,14 +71,23 @@ import { FormControl } from '@angular/forms';
           left: 'calc(15% - 5vmin)'
         })
       ),
-      transition('false => true', [
+      state(
+        'phase2',
+        style({
+          opacity: 1,
+          color: 'white',
+          position: 'absolute',
+          left: 'calc(15% - 5vmin)',
+
+          width: '6vmin',
+          top: 'calc(20%)'
+        })
+      ),
+      transition('* => phase1', [
         animate(
           '200ms ease-out',
           style({
             opacity: 1,
-            width: '20vmin',
-            color: 'white',
-            position: 'absolute',
             top: 'calc(50% - 10vmin)',
             left: 'calc(50% - 10vmin)'
           })
@@ -118,6 +113,16 @@ import { FormControl } from '@angular/forms';
             })
           )
         ])
+      ]),
+      transition('phase1 => phase2', [
+        animate(
+          '200ms ease-out',
+          style({
+            opacity: 1,
+            width: '6vmin',
+            top: 'calc(20%)'
+          })
+        )
       ])
     ]),
     trigger('crack', [
@@ -147,7 +152,7 @@ import { FormControl } from '@angular/forms';
     ]),
     trigger('teamName', [
       state(
-        'false',
+        '*',
         style({
           opacity: 0,
           position: 'absolute',
@@ -160,7 +165,7 @@ import { FormControl } from '@angular/forms';
         })
       ),
       state(
-        'true',
+        'phase1',
         style({
           opacity: 1,
           position: 'absolute',
@@ -172,7 +177,20 @@ import { FormControl } from '@angular/forms';
           'font-weight': 700
         })
       ),
-      transition('* => true', [
+      state(
+        'phase2',
+        style({
+          opacity: 1,
+          position: 'absolute',
+          left: 'calc(15% + 3vmin)',
+          'line-height': '6vmin',
+          color: 'white',
+          'font-weight': 700,
+          'font-size': '6vmin',
+          top: '20%'
+        })
+      ),
+      transition('* => phase1', [
         style({
           opacity: 0
         }),
@@ -180,6 +198,16 @@ import { FormControl } from '@angular/forms';
           '300ms 400ms ease-out',
           style({
             opacity: 1
+          })
+        )
+      ]),
+      transition('phase1 => phase2', [
+        animate(
+          '300ms ease-out',
+          style({
+            left: 'calc(15% + 3vmin)',
+            'font-size': '6vmin',
+            top: 'calc(20% - 2vmin)'
           })
         )
       ])
@@ -221,12 +249,59 @@ import { FormControl } from '@angular/forms';
         )
       ])
     ]),
+
+    trigger('earth', [
+      state(
+        'false',
+        style({
+          opacity: 0,
+          position: 'absolute'
+        })
+      )
+    ]),
+
     trigger('subtitles', [])
   ]
 })
 export class AppComponent {
   showSubtitles = new FormControl(false);
   start = false;
+  logo: 'phase1' | 'phase2' = null;
+  teamName: 'phase1' | 'phase2' = null;
+  teamMembers = false;
+  teamPage = false;
+
+  earth = false;
 
   constructor() {}
+
+  logoDone() {
+    if (this.start && !this.teamPage) {
+      this.teamName = 'phase1';
+    }
+  }
+
+  teamNameDone() {
+    if (this.start) {
+      this.teamMembers = true;
+    }
+  }
+
+  teamMembersDone() {
+    if (this.start) {
+      this.logo = 'phase2';
+      this.teamName = 'phase2';
+      this.teamPage = true;
+    }
+  }
+
+  teamPageDone() {
+    if (this.start) {
+    }
+  }
+
+  earthDone() {
+    if (this.start) {
+    }
+  }
 }
