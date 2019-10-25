@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   MatCardModule,
+  MatCheckboxModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -18,11 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FurryFriendsComponent } from './furry-friends/furry-friends.component';
-import { HouseComponent } from './house/house.component';
 
 @NgModule({
-  declarations: [AppComponent, HouseComponent, FurryFriendsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FlexLayoutModule,
@@ -38,7 +37,8 @@ import { HouseComponent } from './house/house.component';
     MatInputModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,115 +1,232 @@
-import { animate, animateChild, group, query, state, style, transition, trigger } from '@angular/animations';
-import { Component, HostListener } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
-import { routes } from './app-routing.module';
+import { animate, animateChild, group, query, stagger, state, style, transition, trigger } from '@angular/animations';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('intro', [
+    trigger('demo', [
+      transition('* => true', [
+        query('@teamPage', group([animateChild()]))
+        // TODO: each page here (should make it easier to test)
+      ])
+    ]),
+    trigger('teamPage', [
       state(
         'true',
         style({
-          height: '48px',
-          opacity: 0,
-          display: 'none'
+          height: '10vmin',
+          width: '80vmin',
+          'border-bottom-right-radius': '10vmin',
+          overflow: 'hidden'
         })
       ),
       transition('* => true', [
-        style({ height: '100%', opacity: 1 }),
-        animate('200ms ease-out', style({ height: '48px' })),
-        animate('200ms ease-out', style({ opacity: 0 }))
-      ]),
-      transition('* => false', [
-        style({ height: '48px' }),
-        animate('200ms ease-out', style({ height: '100%' }))
+        query('@logo', group([animateChild()])),
+        query('@teamName', group([animateChild()])),
+        query('@teamMembers', group([animateChild()])),
+        group([
+          animate(
+            '400ms ease-out',
+            style({
+              height: '10vmin',
+              width: '80vmin',
+              'border-bottom-right-radius': '10vmin',
+              overflow: 'hidden'
+            })
+          )
+          // query('.logo', [
+          //   animate(
+          //     '400ms ease-out',
+          //     style({
+          //       width: '6vmin',
+          //       top: '20%'
+          //     })
+          //   )
+          // ])
+          // query('.team-name', [
+          //   style({
+          //     'font-size': '6vmin',
+          //     top: 'calc(20% - 2vmin)'
+          //   }),
+          //   animate(
+          //     '400ms ease-out',
+          //     style({
+          //       'font-size': '6vmin',
+          //       top: 'calc(20% - 2vmin)'
+          //     })
+          //   )
+          // ])
+        ])
       ])
     ]),
-    trigger('showContent', [
+    trigger('logo', [
       state(
         'false',
         style({
-          opacity: 0
+          opacity: 0,
+          width: '20vmin',
+          color: 'white',
+          position: 'absolute',
+          top: 'calc(50% - 10vmin)',
+          left: 'calc(50% - 10vmin)'
         })
       ),
       state(
         'true',
+        style({
+          opacity: 1,
+          width: '10vmin',
+          color: 'white',
+          position: 'absolute',
+          top: 'calc(20% - 5vmin)',
+          left: 'calc(15% - 5vmin)'
+        })
+      ),
+      transition('false => true', [
+        animate(
+          '200ms ease-out',
+          style({
+            opacity: 1,
+            width: '20vmin',
+            color: 'white',
+            position: 'absolute',
+            top: 'calc(50% - 10vmin)',
+            left: 'calc(50% - 10vmin)'
+          })
+        ),
+        query('@crack', group([animateChild()])),
+        group([
+          animate(
+            '400ms 400ms ease-in-out',
+            style({
+              width: '10vmin'
+            })
+          ),
+          animate(
+            '400ms 400ms ease-in',
+            style({
+              top: 'calc(20% - 5vmin)'
+            })
+          ),
+          animate(
+            '400ms 400ms ease-out',
+            style({
+              left: 'calc(15% - 5vmin)'
+            })
+          )
+        ])
+      ])
+    ]),
+    trigger('crack', [
+      state(
+        'false',
         style({
           opacity: 1
         })
       ),
+      state(
+        'true',
+        style({
+          opacity: 0
+        })
+      ),
       transition('* => true', [
-        style({ opacity: 0 }),
-        animate('300ms 400ms ease-in', style({ opacity: 1 }))
-      ]),
-      transition('* => false', [
-        style({ opacity: 1 }),
-        animate('300ms 400ms ease-out', style({ opacity: 0 }))
+        style({
+          opacity: 1
+        }),
+        animate(
+          '200ms 300ms ease-out',
+          style({
+            opacity: 0
+          })
+        )
       ])
     ]),
-    trigger('routeAnimations', [
-      transition('house => furryFriends', [
-        style({ position: 'relative' }),
-        query(':enter, :leave', [
+    trigger('teamName', [
+      state(
+        'false',
+        style({
+          opacity: 0,
+          position: 'absolute',
+          top: 'calc(20% - 5vmin)',
+          left: 'calc(15% + 6vmin)',
+          'font-size': '10vmin',
+          'line-height': '10vmin',
+          color: 'white',
+          'font-weight': 700
+        })
+      ),
+      state(
+        'true',
+        style({
+          opacity: 1,
+          position: 'absolute',
+          top: 'calc(20% - 5vmin)',
+          left: 'calc(15% + 6vmin)',
+          'font-size': '10vmin',
+          'line-height': '10vmin',
+          color: 'white',
+          'font-weight': 700
+        })
+      ),
+      transition('* => true', [
+        style({
+          opacity: 0
+        }),
+        animate(
+          '300ms 400ms ease-out',
           style({
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            width: '100%',
-            height: '100%'
+            opacity: 1
           })
-        ]),
-        query(':enter', [style({ right: '-100%' })]),
-        query(':leave', animateChild()),
-        group([
-          query(':leave', [
-            animate('300ms ease-out', style({ right: '100%' }))
-          ]),
-          query(':enter', [animate('300ms ease-out', style({ right: '0%' }))])
-        ]),
-        query(':enter', animateChild())
-      ]),
-      transition('furryFriends => house', [
-        style({ position: 'relative' }),
-        query(':enter, :leave', [
-          style({
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%'
-          })
-        ]),
-        query(':enter', [style({ left: '-100%' })]),
-        query(':leave', animateChild()),
-        group([
-          query(':leave', [animate('300ms ease-out', style({ left: '100%' }))]),
-          query(':enter', [animate('300ms ease-out', style({ left: '0%' }))])
-        ]),
-        query(':enter', animateChild())
+        )
       ])
-    ])
+    ]),
+    trigger('teamMembers', [
+      state(
+        'false',
+        style({
+          opacity: 0,
+          position: 'absolute',
+          top: '30%',
+          left: '15%'
+        })
+      ),
+      state(
+        'true',
+        style({
+          opacity: 0,
+          position: 'absolute',
+          top: '30%',
+          left: '15%'
+        })
+      ),
+      transition('* => true', [
+        style({
+          opacity: 1
+        }),
+        query('h2', [
+          style({
+            opacity: 0
+          }),
+          stagger(200, [animate('0.5s', style({ opacity: 1 }))])
+        ]),
+        animate(
+          '300ms 1000ms ease-out',
+          style({
+            opacity: 0
+          })
+        )
+      ])
+    ]),
+    trigger('subtitles', [])
   ]
 })
 export class AppComponent {
-  readonly navRoutes = routes.filter(
-    route => route.path !== '' && route.path !== '**'
-  );
-  loaded = false;
-
-  @HostListener('window:finishedLoadingAnimation')
-  finishedLoadingAnimationListener() {
-    this.loaded = true;
-  }
+  showSubtitles = new FormControl(false);
+  start = false;
 
   constructor() {}
-
-  prepareRoute(outlet: RouterOutlet) {
-    return (
-      outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation
-    );
-  }
 }

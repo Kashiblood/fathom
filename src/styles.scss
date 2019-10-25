@@ -18,7 +18,7 @@ $fathom-accent: mat-palette($mat-lime, 500, 50, 700);
 $fathom-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$fathom-theme: mat-dark-theme($fathom-primary, $fathom-accent, $fathom-warn);
+$fathom-theme: mat-light-theme($fathom-primary, $fathom-accent, $fathom-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -53,19 +53,19 @@ body {
 
   height: 100%;
   color: $fathom-foreground;
-  background: #1a1b1c;
+  // background: #1a1b1c;
 }
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   display: block;
-  box-sizing: border-box;
-  padding-top: calc(50vh - #{$fathom-app-height} / 2);
-  padding-bottom: calc(50vh - #{$fathom-app-height} / 2);
-  padding-left: calc(50vw - #{$fathom-app-width} / 2);
-  padding-right: calc(50vw - #{$fathom-app-width} / 2);
-  min-height: $fathom-app-height;
-  min-width: $fathom-app-width;
+  // box-sizing: border-box;
+  // padding-top: calc(50vh - #{$fathom-app-height} / 2);
+  // padding-bottom: calc(50vh - #{$fathom-app-height} / 2);
+  // padding-left: calc(50vw - #{$fathom-app-width} / 2);
+  // padding-right: calc(50vw - #{$fathom-app-width} / 2);
+  // min-height: $fathom-app-height;
+  // min-width: $fathom-app-width;
 }
 
 .screen-size-notice {
@@ -77,18 +77,19 @@ body {
 }
 
 app-root {
-  background: linear-gradient($fathom-primary-color, #3e699f);
+  // background: linear-gradient($fathom-primary-color, #3e699f);
+
   height: 100%;
   width: 100%;
   display: block;
-  border-radius: $fathom-padding * 2;
+  // border-radius: $fathom-padding * 2;
   overflow: hidden;
   transition: border-radius 0.2s ease-in-out;
   position: relative;
 
-  @media screen and (max-width: $fathom-app-width) {
-    border-radius: 0px;
-  }
+  // @media screen and (max-width: $fathom-app-width) {
+  //   border-radius: 0px;
+  // }
 }
 
 router-outlet + * {
@@ -107,6 +108,10 @@ router-outlet + * {
   justify-content: center;
   background-color: $fathom-primary-color;
   color: $fathom-primary-text-color;
+
+  &:not([start]) {
+    display: none;
+  }
 
   &[finished] {
     opacity: 0;

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Fathom</title>
-    <base href="./" />
+    <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link
@@ -22,9 +22,8 @@
     </style>
   </head>
   <body>
-    <p class="screen-size-notice mat-caption">Simulating mobile device size</p>
     <app-root></app-root>
-    <div class="loader">
+    <!-- <div class="loader">
       <svg
         class="logo"
         version="1.1"
@@ -74,34 +73,36 @@
           />
         </g>
       </svg>
-    </div>
-    <script>
+    </div> -->
+    <!-- <script>
       // Small script to manage the loading screen before angular has loaded.
       let loader = document.querySelector('.loader');
-      loader.toggleAttribute('start', true);
+      // loader.toggleAttribute('start', true);
       let angularCheck = setInterval(() => {
-        loader.toggleAttribute('start', false);
-        if (typeof angular !== 'undefined') {
-          loader.toggleAttribute('loading', true);
-        } else {
-          loader.toggleAttribute('loading', false);
-          setTimeout(() => {
-            loader.toggleAttribute('loaded', true);
+        if (loader.getAttribute('start')) {
+          loader.toggleAttribute('start', false);
+          if (typeof angular !== 'undefined') {
+            loader.toggleAttribute('loading', true);
+          } else {
+            loader.toggleAttribute('loading', false);
             setTimeout(() => {
-              loader.toggleAttribute('loaded', false);
-              loader.toggleAttribute('finished', true);
+              loader.toggleAttribute('loaded', true);
               setTimeout(() => {
-                window.dispatchEvent(
-                  new CustomEvent('finishedLoadingAnimation', {
-                    detail: true
-                  })
-                );
-              }, 500);
-            }, 500 + 500);
-            clearInterval(angularCheck);
-          }, 500);
+                loader.toggleAttribute('loaded', false);
+                loader.toggleAttribute('finished', true);
+                setTimeout(() => {
+                  window.dispatchEvent(
+                    new CustomEvent('finishedLoadingAnimation', {
+                      detail: true
+                    })
+                  );
+                }, 500);
+              }, 500 + 500);
+              clearInterval(angularCheck);
+            }, 500);
+          }
         }
       }, 500);
-    </script>
+    </script> -->
   </body>
 </html>
