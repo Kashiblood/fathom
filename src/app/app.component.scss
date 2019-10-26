@@ -64,3 +64,52 @@
   width: 100%;
   height: 100%;
 }
+
+.planet-container {
+  width: 90vmin;
+  height: 90vmin;
+  position: relative;
+
+  & .earth {
+    position: absolute;
+
+    & #south-pole > path {
+      transform-origin: -50px -11px;
+    }
+  }
+
+  & .people {
+    z-index: 10;
+  }
+
+  & .polution {
+    // z-index: -1;
+    width: 100%;
+    height: 100%;
+
+    > img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  & .sweating {
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    > img {
+      position: absolute;
+      width: 10vmin;
+    }
+  }
+
+  & .water-drop {
+    z-index: 20;
+    width: 20vmin;
+    position: absolute;
+    bottom: -20px;
+    transform-origin: 50% 0%;
+  }
+}
