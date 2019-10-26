@@ -393,7 +393,7 @@ const elasticIn = animate(
           style({
             opacity: 0
           }),
-          stagger(200, [
+          stagger(100, [
             group([animate('0.5s', style({ opacity: 1 })), elasticIn])
           ]),
           style({
@@ -433,6 +433,32 @@ const elasticIn = animate(
             opacity: 1
           })
         )
+      ])
+    ]),
+    trigger('polutionStats', [
+      state(
+        'false',
+        style({
+          opacity: 0
+        })
+      ),
+      state(
+        'true',
+        style({
+          opacity: 1
+        })
+      ),
+      transition('* => true', [
+        style({
+          opacity: 1
+        }),
+        query('span', [
+          style({
+            opacity: 0
+          }),
+          // stagger(600, [animate('0.5s', style({ opacity: 1 }))])
+          animate('0.5s', style({ opacity: 1 }))
+        ])
       ])
     ]),
     trigger('mouth', [
@@ -503,7 +529,7 @@ const elasticIn = animate(
               transform: 'scale(1)'
             }),
             animate(
-              '2000ms ease-in-out',
+              '1600ms ease-in-out',
               style({
                 transform: 'scale(0.01)'
               })
@@ -537,9 +563,9 @@ const elasticIn = animate(
             style({
               opacity: 0
             }),
-            stagger(200, [
+            stagger(100, [
               animate(
-                '1000ms',
+                '800ms',
                 keyframes([
                   style({ opacity: 1, offset: 0.5 }),
                   style({ opacity: 0, offset: 1.0 })
@@ -771,14 +797,14 @@ const elasticIn = animate(
       state(
         'true',
         style({
-          opacity: 0
+          opacity: 1
         })
       ),
       transition('false => true', [
         animate(
           '500ms 500ms ease-in-out',
           style({
-            opacity: 0
+            opacity: 1
           })
         )
       ])
@@ -795,7 +821,7 @@ const elasticIn = animate(
           height: '*'
         }),
         animate(
-          '500ms 500ms ease-in-out',
+          '500ms ease-in-out',
           style({
             height: '25vmin'
           })
@@ -823,35 +849,57 @@ const elasticIn = animate(
           style({
             opacity: 0
           }),
-          stagger(200, [
+          stagger(100, [
             group([animate('0.5s', style({ opacity: 1 })), elasticIn])
           ]),
           style({
             opacity: 1
           }),
-          stagger(50, [
+          stagger(0, [
             group([
               animate(
-                '1s ease-in-out',
-                style({ transform: 'translateX(-25vmin)' })
+                '.5s ease-in-out',
+                style({ transform: 'translateX(-20vmin)' })
               ),
               animate(
-                '1s ease-in-out',
+                '.5s ease-in-out',
                 keyframes([
                   style({ bottom: 0, offset: 0.0 }),
-                  style({ bottom: '5vmin', offset: 0.125 }),
+                  style({ bottom: '3vmin', offset: 0.125 }),
                   style({ bottom: 0, offset: 0.25 }),
-                  style({ bottom: '5vmin', offset: 0.375 }),
+                  style({ bottom: '3vmin', offset: 0.375 }),
                   style({ bottom: 0, offset: 0.5 }),
-                  style({ bottom: '5vmin', offset: 0.625 }),
+                  style({ bottom: '3vmin', offset: 0.625 }),
                   style({ bottom: 0, offset: 0.75 }),
-                  style({ bottom: '5vmin', offset: 0.875 }),
+                  style({ bottom: '3vmin', offset: 0.875 }),
                   style({ bottom: 0, offset: 1.0 })
                 ])
               )
             ])
           ])
         ])
+      ])
+    ]),
+    trigger('issueScreen', [
+      state(
+        'false',
+        style({
+          opacity: 1
+        })
+      ),
+      state(
+        'true',
+        style({
+          opacity: 0
+        })
+      ),
+      transition('false => true', [
+        animate(
+          '1000ms ease-in-out',
+          style({
+            transform: 'translateX(100vw)'
+          })
+        )
       ])
     ]),
     trigger('subtitles', [])
@@ -868,6 +916,7 @@ export class AppComponent {
   earth: 'phase1' | 'phase2' = null;
   people: 'phase1' | 'phase2' = null;
   polution: 'phase1' | 'phase2' = null;
+  polutionStats = false;
   mouth = false;
   sweating = false;
   iceCapsMelt = false;
@@ -886,7 +935,7 @@ export class AppComponent {
 
   refugees = false;
 
-  demo = false;
+  issueScreen = false;
 
   constructor() {}
 
@@ -919,6 +968,7 @@ export class AppComponent {
   earthDone() {
     if (this.start && !this.people) {
       this.people = 'phase1';
+      this.polutionStats = true;
     }
   }
 
@@ -999,8 +1049,13 @@ export class AppComponent {
   }
 
   refugeesDone() {
-    if (this.start && !this.demo) {
-      this.demo = true;
+    if (this.start && !this.issueScreen) {
+      this.issueScreen = true;
+    }
+  }
+
+  issueScreenDone() {
+    if (this.start) {
     }
   }
 }

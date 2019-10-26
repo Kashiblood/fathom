@@ -50,6 +50,7 @@
   font-size: 5vmin !important;
   color: white;
   margin-bottom: 5vmin;
+  font-weight: bold !important;
 
   & > img {
     width: 10vmin;
@@ -80,6 +81,17 @@
 
     & #south-pole > path {
       transform-origin: -50px -11px;
+    }
+  }
+
+  & .polution-stats {
+    position: absolute;
+    left: -40vmin;
+    top: 10vmin;
+    color: white;
+
+    & span {
+      font-weight: bold;
     }
   }
 
@@ -148,7 +160,7 @@
     overflow: hidden;
 
     & .pop-info {
-      top: 40vmin;
+      top: 35vmin;
       left: -3vmin;
       width: 40vmin;
       height: 18vmin;

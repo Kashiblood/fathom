@@ -80,7 +80,7 @@
     </h1>
     <div [@teamMembers]="teamMembers" (@teamMembers.done)="teamMembersDone()">
       <h2 class="team-member" fxLayout="row" fxLayoutAlign="start center">
-        <img src="../assets/avatars/julia.jpeg" />
+        <img src="../assets/avatars/jeff.jpeg" />
         Jeffrey Rouleau
       </h2>
       <h2 class="team-member" fxLayout="row" fxLayoutAlign="start center">
@@ -89,7 +89,13 @@
       </h2>
     </div>
   </div>
-  <div class="issue-screen" fxLayout="row" fxLayoutAlign="center center">
+  <div
+    class="issue-screen"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    [@issueScreen]="issueScreen"
+    (@issueScreen.done)="issueScreenDone()"
+  >
     <div fxLayout="row">
       <div fxFlex></div>
       <div fxLayout="column" class="page-container">
@@ -98,6 +104,16 @@
           fxLayoutAlign="center center"
           [@planetContainer]="planetContainer"
         >
+          <div class="polution-stats" [@polutionStats]="polutionStats">
+            <p class="mat-display-2" fxLayout="column">
+              <span>↑CO2</span>
+              <!-- <span>=</span> -->
+              <span>↑Temperature</span>
+              <!-- <span>=</span> -->
+              <span>↓Ice Caps</span>
+              <span>↑Sea Level</span>
+            </p>
+          </div>
           <div
             [@polution]="polution"
             class="polution"
