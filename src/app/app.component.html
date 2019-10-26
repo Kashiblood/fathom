@@ -90,298 +90,415 @@
     </div>
   </div>
   <div class="issue-screen" fxLayout="row" fxLayoutAlign="center center">
-    <div fxFlex></div>
-    <div
-      class="planet-container"
-      fxLayoutAlign="center center"
-      [@planetContainer]="planetContainer"
-    >
-      <div
-        [@polution]="polution"
-        class="polution"
-        (@polution.done)="polutionDone()"
-      >
-        <img src="../assets/polution_clouds.svg" />
-      </div>
-      <svg
-        class="earth"
-        [@earth]="earth"
-        (@earth.done)="earthDone()"
-        version="1.1"
-        viewBox="0 0 226.61 226.61"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:cc="http://creativecommons.org/ns#"
-        xmlns:dc="http://purl.org/dc/elements/1.1/"
-        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-      >
-        <defs>
-          <clipPath id="clipPath18">
-            <path d="m0 600h800v-600h-800v600z" />
-          </clipPath>
-        </defs>
-        <g transform="translate(-94.443 -208.1)">
-          <g
-            transform="matrix(.59787 0 0 -.59787 -31.4 504.54)"
-            clip-path="url(#clipPath18)"
+    <div fxLayout="row">
+      <div fxFlex></div>
+      <div fxLayout="column" class="page-container">
+        <div
+          class="planet-container"
+          fxLayoutAlign="center center"
+          [@planetContainer]="planetContainer"
+        >
+          <div
+            [@polution]="polution"
+            class="polution"
+            (@polution.done)="polutionDone()"
           >
-            <g transform="matrix(.81 0 0 .81 76.001 63.616)">
-              <g transform="translate(554.43,299.61)">
-                <path
-                  d="m0 0c0-85.29-69.14-154.43-154.43-154.43-85.288 0-154.43 69.139-154.43 154.43 0 85.289 69.14 154.43 154.43 154.43s154.43-69.141 154.43-154.43"
-                  fill="#7cb7ed"
-                />
-                <path
-                  d="m3.0332 0c0-86.965-70.498-157.46-157.46-157.46-86.963 0-157.46 70.497-157.46 157.46 0 86.964 70.498 157.46 157.46 157.46 86.965 0 157.46-70.496 157.46-157.46"
-                  fill="none"
-                />
-              </g>
-              <g id="south-pole-ground" transform="translate(447,151.47)">
-                <path
-                  d="m 0,0 c 0,0 -48.604,-15.479 -97.901,1.301 0,0 28.344,4.175 41.625,11.737 C -42.995,20.601 0,0 0,0"
-                  fill="#0fb55e"
-                />
-              </g>
+            <img src="../assets/polution_clouds.svg" />
+          </div>
+          <svg
+            class="earth"
+            [@earth]="earth"
+            (@earth.done)="earthDone()"
+            version="1.1"
+            viewBox="0 0 226.61 226.61"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:cc="http://creativecommons.org/ns#"
+            xmlns:dc="http://purl.org/dc/elements/1.1/"
+            xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          >
+            <defs>
+              <clipPath id="clipPath18">
+                <path d="m0 600h800v-600h-800v600z" />
+              </clipPath>
+            </defs>
+            <g transform="translate(-94.443 -208.1)">
               <g
-                [@iceCapsMelt]="iceCapsMelt"
-                (@iceCapsMelt.done)="iceCapsMeltDone()"
+                transform="matrix(.59787 0 0 -.59787 -31.4 504.54)"
+                clip-path="url(#clipPath18)"
               >
-                <g id="south-pole" transform="translate(447,151.47)">
+                <g transform="matrix(.81 0 0 .81 76.001 63.616)">
+                  <g transform="translate(554.43,299.61)">
+                    <path
+                      d="m0 0c0-85.29-69.14-154.43-154.43-154.43-85.288 0-154.43 69.139-154.43 154.43 0 85.289 69.14 154.43 154.43 154.43s154.43-69.141 154.43-154.43"
+                      fill="#7cb7ed"
+                    />
+                    <path
+                      d="m3.0332 0c0-86.965-70.498-157.46-157.46-157.46-86.963 0-157.46 70.497-157.46 157.46 0 86.964 70.498 157.46 157.46 157.46 86.965 0 157.46-70.496 157.46-157.46"
+                      fill="none"
+                    />
+                  </g>
+                  <g id="south-pole-ground" transform="translate(447,151.47)">
+                    <path
+                      d="m 0,0 c 0,0 -48.604,-15.479 -97.901,1.301 0,0 28.344,4.175 41.625,11.737 C -42.995,20.601 0,0 0,0"
+                      fill="#0fb55e"
+                    />
+                  </g>
+                  <g
+                    [@iceCapsMelt]="iceCapsMelt"
+                    (@iceCapsMelt.done)="iceCapsMeltDone()"
+                  >
+                    <g id="south-pole" transform="translate(447,151.47)">
+                      <path
+                        id="snow"
+                        d="m 0,0 c 0,0 -48.604,-15.479 -97.901,1.301 0,0 28.344,4.175 41.625,11.737 C -42.995,20.601 0,0 0,0"
+                        fill="#fff"
+                      />
+                    </g>
+                    <g id="north-pole" transform="translate(400,455.04)">
+                      <path
+                        d="m0 0c51.067 0 79.29-21.887 79.29-21.887s-18.978-8.148-48.391 0c0 0-22.689-1.096-38.656-7.819-15.966-6.723-24.437 10.924-24.437 10.924s-13.981-9.608-38.049 1.919c0 0 31.781 16.863 70.243 16.863"
+                        fill="#fff"
+                      />
+                    </g>
+                  </g>
+                  <g transform="translate(487.95,212.66)">
+                    <path
+                      d="m0 0s-0.919 26.656-1.379 39.064c-0.46 12.409 4.136 20.682-1.839 32.171-5.974 11.49-1.379 20.682-6.893 21.141-5.515 0.459-22.979 3.677-32.63 0-9.652-3.677-30.793 12.409-31.252 22.979s-3.676 18.383-3.676 18.383 11.949 19.262 15.166 18.593 3.677 12.199 5.975 13.118c2.298 0.92 26.655 7.354 33.549 7.354 6.893 0 1.838-7.354 1.838-7.354l21.141-7.81 3.677 8.273 18.383-5.515s-0.459 11.03-4.596 12.409c-4.137 1.378-21.601 9.651-21.601 9.651s3.678-6.894 1.839-8.732c-1.839-1.839-7.813 8.732-7.813 8.732l-13.327 5.055s-9.192-1.379-14.248-3.217c-5.055-1.838-7.353-10.57-7.353-10.57s-9.191-4.596-15.166-3.217c-5.975 1.378-4.137 12.868-4.137 12.868s11.03 0.919 11.949 4.136-7.812 9.192-7.812 9.192l6.893 3.217 6.434 11.232 10.111-1.122 3.217 11.95-0.807 11.806s67.293-31.638 88.51-83.995l-10.953 6.928 4.596-10.111 1.838 1.379 5.515-10.11v-8.273l-2.757-12.71s-17.515 29.546-25.737 37.068c0 0 11.957-27.574 26.197-41.822l4.595 4.754v-22.233l-4.136-9.652-5.055-15.166-0.92-11.949v-14.247l-6.894-6.893-6.893-5.056v-5.975l-6.894-9.203-9.651-10.11-9.651-6.435h-7.353z"
+                      fill="#0fb55e"
+                      stroke="#0fb55e"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="6.6904"
+                    />
+                  </g>
                   <path
-                    id="snow"
-                    d="m 0,0 c 0,0 -48.604,-15.479 -97.901,1.301 0,0 28.344,4.175 41.625,11.737 C -42.995,20.601 0,0 0,0"
-                    fill="#fff"
+                    d="m355.05 160.34-9.191 11.949 1.379 6.435h5.974l-1.274 6.589 1.734 8.577 1.378 6.433 5.199 5.407s11.807 4.705 10.428 21.25c0 0 10.109 13.788 7.812 21.14-2.298 7.353-16.145 6.894-16.145 6.894l-22.919 9.651s-1.838 9.652-8.272 10.571c-6.435 0.918-8.273-3.677-11.031 0-2.758 3.676-6.576 9.194-13.858 9.652s-16.474 6.432-16.474 6.432-1.379 5.055-9.191 3.217c0 0-5.056 5.056-2.758 15.167 0 0-0.459 5.515-7.354 3.217 0 0-5.514 5.975-7.353 5.975-1.838 0-4.596 17.464 3.678 25.277 0 0 7.812 9.191 16.545 3.676 0 0-0.461-8.732 0.918-12.868s4.136 5.975 4.136 5.975l0.46 12.868s5.975 2.758 11.031 7.353c5.054 4.596 3.216 10.571 10.11 15.166 6.893 4.596 8.272 0 8.272 0l0.459 7.813h6.435l15.626 6.894s-7.354-0.46-10.111 3.677l19.761 10.57v5.974l-1.355 12.409-4.619-5.515-0.918 5.515-8.733 1.121h-3.216l-7.354-3.419-0.46-4.596-8.272-3.676-4.137 4.136 3.218 4.136 3.216 3.419 8.566 11.597s-56.809-31.864-73.36-88.241c0 0-0.925-17.772-1.384-24.206-0.46-6.434 5.054-12.408 5.054-12.408h5.056l1.838-4.596 4.136-1.379 2.299-1.379 1.378-3.583 1.838-6.528 4.137-0.92 2.297-4.135 2.758-0.46-0.919 3.676h3.677l1.378-3.216-4.136-3.217-1.379-3.218-0.459-7.352 0.459-5.516 0.46-5.055-4.136-2.298 0.918-5.055 0.461-3.217v-5.056l-2.299-0.919 16.545-22.519 5.056-1.839 3.216-0.459 5.056-1.839 4.137-7.812s13.327-29.415 15.166-33.55c1.838-4.124 21.141-21.129 29.412-19.75"
+                    fill="#0fb55e"
+                    stroke="#0fb55e"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="6.6904"
                   />
-                </g>
-                <g id="north-pole" transform="translate(400,455.04)">
-                  <path
-                    d="m0 0c51.067 0 79.29-21.887 79.29-21.887s-18.978-8.148-48.391 0c0 0-22.689-1.096-38.656-7.819-15.966-6.723-24.437 10.924-24.437 10.924s-13.981-9.608-38.049 1.919c0 0 31.781 16.863 70.243 16.863"
-                    fill="#fff"
-                  />
+                  <g
+                    transform="translate(554.43,299.61)"
+                    fill="none"
+                    stroke="#2c89a0"
+                  >
+                    <path
+                      d="m0 0c0-85.29-69.14-154.43-154.43-154.43-85.288 0-154.43 69.139-154.43 154.43 0 85.289 69.14 154.43 154.43 154.43s154.43-69.141 154.43-154.43"
+                    />
+                    <path
+                      d="m3.0332 0c0-86.965-70.498-157.46-157.46-157.46-86.963 0-157.46 70.497-157.46 157.46 0 86.964 70.498 157.46 157.46 157.46 86.965 0 157.46-70.496 157.46-157.46"
+                      stroke-width="6.6904"
+                    />
+                  </g>
                 </g>
               </g>
-              <g transform="translate(487.95,212.66)">
-                <path
-                  d="m0 0s-0.919 26.656-1.379 39.064c-0.46 12.409 4.136 20.682-1.839 32.171-5.974 11.49-1.379 20.682-6.893 21.141-5.515 0.459-22.979 3.677-32.63 0-9.652-3.677-30.793 12.409-31.252 22.979s-3.676 18.383-3.676 18.383 11.949 19.262 15.166 18.593 3.677 12.199 5.975 13.118c2.298 0.92 26.655 7.354 33.549 7.354 6.893 0 1.838-7.354 1.838-7.354l21.141-7.81 3.677 8.273 18.383-5.515s-0.459 11.03-4.596 12.409c-4.137 1.378-21.601 9.651-21.601 9.651s3.678-6.894 1.839-8.732c-1.839-1.839-7.813 8.732-7.813 8.732l-13.327 5.055s-9.192-1.379-14.248-3.217c-5.055-1.838-7.353-10.57-7.353-10.57s-9.191-4.596-15.166-3.217c-5.975 1.378-4.137 12.868-4.137 12.868s11.03 0.919 11.949 4.136-7.812 9.192-7.812 9.192l6.893 3.217 6.434 11.232 10.111-1.122 3.217 11.95-0.807 11.806s67.293-31.638 88.51-83.995l-10.953 6.928 4.596-10.111 1.838 1.379 5.515-10.11v-8.273l-2.757-12.71s-17.515 29.546-25.737 37.068c0 0 11.957-27.574 26.197-41.822l4.595 4.754v-22.233l-4.136-9.652-5.055-15.166-0.92-11.949v-14.247l-6.894-6.893-6.893-5.056v-5.975l-6.894-9.203-9.651-10.11-9.651-6.435h-7.353z"
-                  fill="#0fb55e"
-                  stroke="#0fb55e"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="6.6904"
-                />
-              </g>
+              <ellipse cx="172.5" cy="310.51" rx="7.5" ry="7.1429" />
+              <ellipse cx="244.5" cy="310.51" rx="7.5" ry="7.1429" />
               <path
-                d="m355.05 160.34-9.191 11.949 1.379 6.435h5.974l-1.274 6.589 1.734 8.577 1.378 6.433 5.199 5.407s11.807 4.705 10.428 21.25c0 0 10.109 13.788 7.812 21.14-2.298 7.353-16.145 6.894-16.145 6.894l-22.919 9.651s-1.838 9.652-8.272 10.571c-6.435 0.918-8.273-3.677-11.031 0-2.758 3.676-6.576 9.194-13.858 9.652s-16.474 6.432-16.474 6.432-1.379 5.055-9.191 3.217c0 0-5.056 5.056-2.758 15.167 0 0-0.459 5.515-7.354 3.217 0 0-5.514 5.975-7.353 5.975-1.838 0-4.596 17.464 3.678 25.277 0 0 7.812 9.191 16.545 3.676 0 0-0.461-8.732 0.918-12.868s4.136 5.975 4.136 5.975l0.46 12.868s5.975 2.758 11.031 7.353c5.054 4.596 3.216 10.571 10.11 15.166 6.893 4.596 8.272 0 8.272 0l0.459 7.813h6.435l15.626 6.894s-7.354-0.46-10.111 3.677l19.761 10.57v5.974l-1.355 12.409-4.619-5.515-0.918 5.515-8.733 1.121h-3.216l-7.354-3.419-0.46-4.596-8.272-3.676-4.137 4.136 3.218 4.136 3.216 3.419 8.566 11.597s-56.809-31.864-73.36-88.241c0 0-0.925-17.772-1.384-24.206-0.46-6.434 5.054-12.408 5.054-12.408h5.056l1.838-4.596 4.136-1.379 2.299-1.379 1.378-3.583 1.838-6.528 4.137-0.92 2.297-4.135 2.758-0.46-0.919 3.676h3.677l1.378-3.216-4.136-3.217-1.379-3.218-0.459-7.352 0.459-5.516 0.46-5.055-4.136-2.298 0.918-5.055 0.461-3.217v-5.056l-2.299-0.919 16.545-22.519 5.056-1.839 3.216-0.459 5.056-1.839 4.137-7.812s13.327-29.415 15.166-33.55c1.838-4.124 21.141-21.129 29.412-19.75"
-                fill="#0fb55e"
-                stroke="#0fb55e"
+                class="mouth"
+                [@mouth]="mouth"
+                (@mouth.done)="mouthDone()"
+                d="m225.58 322.71c-1.4206 14.713-32.43 15.287-34.286 0"
+                fill="none"
+                stroke="#000"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="6.6904"
+                stroke-width="3"
               />
-              <g
-                transform="translate(554.43,299.61)"
-                fill="none"
-                stroke="#2c89a0"
-              >
-                <path
-                  d="m0 0c0-85.29-69.14-154.43-154.43-154.43-85.288 0-154.43 69.139-154.43 154.43 0 85.289 69.14 154.43 154.43 154.43s154.43-69.141 154.43-154.43"
+              <g>
+                <ellipse
+                  cx="158.16"
+                  cy="328.28"
+                  rx="5.8896"
+                  ry="3.0166"
+                  fill="#faa"
                 />
-                <path
-                  d="m3.0332 0c0-86.965-70.498-157.46-157.46-157.46-86.963 0-157.46 70.497-157.46 157.46 0 86.964 70.498 157.46 157.46 157.46 86.965 0 157.46-70.496 157.46-157.46"
-                  stroke-width="6.6904"
+                <ellipse
+                  cx="252.16"
+                  cy="328.28"
+                  rx="5.8896"
+                  ry="3.0166"
+                  fill="#faa"
                 />
+                <text
+                  x="185.06476"
+                  y="373.29861"
+                  fill="#000000"
+                  font-family="'DejaVu Sans'"
+                  letter-spacing="0px"
+                  stroke-width="1px"
+                  word-spacing="0px"
+                  style="line-height:0%"
+                  xml:space="preserve"
+                >
+                  <tspan
+                    x="185.06476"
+                    y="373.29861"
+                    font-family="'Ume Gothic S5'"
+                    font-size="12.5px"
+                    style="line-height:1.25"
+                  ></tspan>
+                </text>
               </g>
             </g>
-          </g>
-          <ellipse cx="172.5" cy="310.51" rx="7.5" ry="7.1429" />
-          <ellipse cx="244.5" cy="310.51" rx="7.5" ry="7.1429" />
-          <path
-            class="mouth"
-            [@mouth]="mouth"
-            (@mouth.done)="mouthDone()"
-            d="m225.58 322.71c-1.4206 14.713-32.43 15.287-34.286 0"
-            fill="none"
-            stroke="#000"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="3"
-          />
-          <g>
-            <ellipse
-              cx="158.16"
-              cy="328.28"
-              rx="5.8896"
-              ry="3.0166"
-              fill="#faa"
-            />
-            <ellipse
-              cx="252.16"
-              cy="328.28"
-              rx="5.8896"
-              ry="3.0166"
-              fill="#faa"
-            />
-            <text
-              x="185.06476"
-              y="373.29861"
-              fill="#000000"
-              font-family="'DejaVu Sans'"
-              letter-spacing="0px"
-              stroke-width="1px"
-              word-spacing="0px"
-              style="line-height:0%"
-              xml:space="preserve"
+          </svg>
+          <div class="people" [@people]="people" (@people.done)="peopleDone()">
+            <div
+              style="height: 20vmin;width: 20vmin;position: absolute;top: 19vmin;right: 14vmin;"
+              fxLayoutAlign="center center"
             >
-              <tspan
-                x="185.06476"
-                y="373.29861"
-                font-family="'Ume Gothic S5'"
-                font-size="12.5px"
-                style="line-height:1.25"
-              ></tspan>
-            </text>
-          </g>
-        </g>
-      </svg>
-      <div class="people" [@people]="people" (@people.done)="peopleDone()">
-        <div
-          style="height: 20vmin;width: 20vmin;position: absolute;top: 19vmin;right: 14vmin;"
-          fxLayoutAlign="center center"
-        >
-          <img src="../assets/outsourced/person/person_edited_clean.svg" />
+              <img src="../assets/outsourced/person/person_edited_clean.svg" />
+            </div>
+            <div
+              style="height: 20vmin;width: 20vmin;position: absolute;top: 6vmin;right: 25vmin;"
+              fxLayoutAlign="center center"
+            >
+              <img src="../assets/outsourced/person/person_edited_clean.svg" />
+            </div>
+            <div
+              style="height: 20vmin;width: 20vmin;position: absolute;top: 11vmin;left: 15vmin;"
+              fxLayoutAlign="center center"
+            >
+              <img src="../assets/outsourced/person/person_edited_clean.svg" />
+            </div>
+            <div
+              style="height: 20vmin;width: 20vmin;position: absolute;top: 45vmin;left: 22vmin;"
+              fxLayoutAlign="center center"
+            >
+              <img src="../assets/outsourced/person/person_edited_clean.svg" />
+            </div>
+            <div
+              style="height: 20vmin;width: 20vmin;position: absolute;top: 25vmin;left: 9vmin;"
+              fxLayoutAlign="center center"
+            >
+              <img src="../assets/outsourced/person/person_edited_clean.svg" />
+            </div>
+            <div
+              style="height: 20vmin;width: 20vmin;position: absolute;top: 23vmin;left: 42vmin;"
+              fxLayoutAlign="center center"
+            >
+              <img src="../assets/outsourced/person/person_edited_clean.svg" />
+            </div>
+            <div
+              style="height: 20vmin;width: 20vmin;position: absolute;top: 37vmin;left: 58vmin;"
+              fxLayoutAlign="center center"
+            >
+              <img src="../assets/outsourced/person/person_edited_clean.svg" />
+            </div>
+          </div>
+          <div
+            class="sweating"
+            [@sweating]="sweating"
+            (@sweating.done)="sweatingDone()"
+          >
+            <img
+              id="one"
+              style="top: 29%; left: 26%; transform: rotateZ(33deg); transform-origin: 200% 50%;"
+              src="../assets/water_drop_clean.svg"
+            />
+            <img
+              id="two"
+              style="top: 29%; right: 26%; transform: rotateZ(-14deg); transform-origin: -200% 50%;"
+              src="../assets/water_drop_clean.svg"
+            />
+            <img
+              id="three"
+              style="top: 32%; left: 37%; transform: rotateZ(20deg); transform-origin: 300% 50%;"
+              src="../assets/water_drop_clean.svg"
+            />
+            <img
+              id="four"
+              style="top: 29%; right: 37%; transform: rotateZ(-12deg); transform-origin: -300% 50%;"
+              src="../assets/water_drop_clean.svg"
+            />
+          </div>
+          <img
+            class="water-drop"
+            [@waterDrop]="waterDrop"
+            (@waterDrop.done)="waterDropDone()"
+            src="../assets/water_drop_clean.svg"
+          />
         </div>
+        <div fxFlex="10vh"></div>
         <div
-          style="height: 20vmin;width: 20vmin;position: absolute;top: 6vmin;right: 25vmin;"
-          fxLayoutAlign="center center"
+          class="shore-container"
+          [@shoreContainer]="shoreContainer"
+          (@shoreContainer.done)="shoreContainerDone()"
         >
-          <img src="../assets/outsourced/person/person_edited_clean.svg" />
-        </div>
-        <div
-          style="height: 20vmin;width: 20vmin;position: absolute;top: 11vmin;left: 15vmin;"
-          fxLayoutAlign="center center"
-        >
-          <img src="../assets/outsourced/person/person_edited_clean.svg" />
-        </div>
-        <div
-          style="height: 20vmin;width: 20vmin;position: absolute;top: 45vmin;left: 22vmin;"
-          fxLayoutAlign="center center"
-        >
-          <img src="../assets/outsourced/person/person_edited_clean.svg" />
-        </div>
-        <div
-          style="height: 20vmin;width: 20vmin;position: absolute;top: 25vmin;left: 9vmin;"
-          fxLayoutAlign="center center"
-        >
-          <img src="../assets/outsourced/person/person_edited_clean.svg" />
-        </div>
-        <div
-          style="height: 20vmin;width: 20vmin;position: absolute;top: 23vmin;left: 42vmin;"
-          fxLayoutAlign="center center"
-        >
-          <img src="../assets/outsourced/person/person_edited_clean.svg" />
-        </div>
-        <div
-          style="height: 20vmin;width: 20vmin;position: absolute;top: 37vmin;left: 58vmin;"
-          fxLayoutAlign="center center"
-        >
-          <img src="../assets/outsourced/person/person_edited_clean.svg" />
+          <div class="sky">
+            <div class="water" [@water]="water" (@water.done)="waterDone()">
+              <div class="water-bottom"></div>
+              <section>
+                <div class="wave wave1"></div>
+                <div class="wave wave2"></div>
+                <div class="wave wave3"></div>
+                <div class="wave wave4"></div>
+              </section>
+            </div>
+            <img
+              class="city"
+              src="../assets/outsourced/city silhouette/new-york-2753807_1280.png"
+            />
+            <div class="water-drop-splash" [@waterDropSplash]="waterDropSplash">
+              <img
+                id="one"
+                src="../assets/water_drop_clean.svg"
+                style="right: 27%;
+                       position: absolute;
+                       bottom: 14%;
+                       width: 10vmin;
+                       transform: scaleY(-1) rotateZ(18deg);
+                       transform-origin: -192% 62%;"
+              />
+              <img
+                id="two"
+                src="../assets/water_drop_clean.svg"
+                style="right: 26%;
+                       position: absolute;
+                       bottom: 21%;
+                       width: 10vmin;
+                       transform: scaleY(-1) rotateZ(-5deg);
+                       transform-origin: 241% 62%;"
+              />
+              <img
+                id="three"
+                src="../assets/water_drop_clean.svg"
+                style="right: 25%;
+                       position: absolute;
+                       bottom: 14%;
+                       width: 10vmin;
+                       transform: scaleY(-1) rotateZ(-30deg);
+                       transform-origin: 192% 62%;"
+              />
+            </div>
+            <div
+              class="pop-info"
+              fxLayout="row"
+              fxLayoutAlign="center center"
+              [@popInfo]="popInfo"
+              (@popInfo.done)="popInfoDone()"
+            >
+              <p class="mat-display-2 text">40%</p>
+              <img
+                class="person"
+                src="../assets/outsourced/person/person_edited_clean.svg"
+              />
+            </div>
+            <div
+              class="refugees"
+              [@refugees]="refugees"
+              (@refugees.done)="refugeesDone()"
+            >
+              <div class="group" style="left: 2vmin">
+                <img
+                  id="one"
+                  class="person"
+                  src="../assets/outsourced/person/person_edited_clean.svg"
+                />
+                <img
+                  id="two"
+                  class="person"
+                  src="../assets/outsourced/person/person_edited_clean.svg"
+                />
+                <img
+                  id="three"
+                  class="person"
+                  src="../assets/outsourced/person/person_edited_clean.svg"
+                />
+              </div>
+              <div class="group" style="left: 8vmin">
+                <img
+                  id="one"
+                  class="person"
+                  src="../assets/outsourced/person/person_edited_clean.svg"
+                />
+                <img
+                  id="two"
+                  class="person"
+                  src="../assets/outsourced/person/person_edited_clean.svg"
+                />
+                <img
+                  id="three"
+                  class="person"
+                  src="../assets/outsourced/person/person_edited_clean.svg"
+                />
+              </div>
+            </div>
+          </div>
+          <img
+            src="../assets/shore_with_edges_and_lines_flat_clean.svg"
+            class="shore"
+          />
         </div>
       </div>
-      <div
-        class="sweating"
-        [@sweating]="sweating"
-        (@sweating.done)="sweatingDone()"
-      >
-        <img
-          id="one"
-          style="top: 29%; left: 26%; transform: rotateZ(33deg); transform-origin: 200% 50%;"
-          src="../assets/water_drop_clean.svg"
-        />
-        <img
-          id="two"
-          style="top: 29%; right: 26%; transform: rotateZ(-14deg); transform-origin: -200% 50%;"
-          src="../assets/water_drop_clean.svg"
-        />
-        <img
-          id="three"
-          style="top: 32%; left: 37%; transform: rotateZ(20deg); transform-origin: 300% 50%;"
-          src="../assets/water_drop_clean.svg"
-        />
-        <img
-          id="four"
-          style="top: 29%; right: 37%; transform: rotateZ(-12deg); transform-origin: -300% 50%;"
-          src="../assets/water_drop_clean.svg"
-        />
-      </div>
-      <img
-        class="water-drop"
-        [@waterDrop]="waterDrop"
-        (@waterDrop.done)="waterDropDone()"
-        src="../assets/water_drop_clean.svg"
-      />
+      <div fxFlex></div>
     </div>
-    <div fxFlex></div>
+    <div class="subtitles" *ngIf="showSubtitles.value" @subtitles>
+      <p>With the world population increasing, so does our polution.</p>
+      <p>
+        The increased CO2 emissions results in a greenhouse effect raising the
+        mean tempature of earth.
+      </p>
+      <p>
+        As a result polar ice caps are melting and increasing the sea level.
+      </p>
+
+      <p>Approximately 40% of people live within 100km of the coast.</p>
+      <span
+        >cite:
+        https://sedac.ciesin.columbia.edu/es/papers/Coastal_Zone_Pop_Method.pdf</span
+      >
+      <p>
+        These people are at risk of being displaced due to the receeding
+        coastline.
+      </p>
+      <p>
+        Thus a method to inform them is needed to prevent waves of refugees as
+        they are impacted.
+      </p>
+
+      <span>start showing app demo</span>
+      <p>To address this we have created Fathom.</p>
+      <p>
+        By providing a simple and friendly interface it is designed to be usable
+        by children through to the elderly.
+      </p>
+      <p>
+        The sea level predictions are taken care of by the app behind the scenes
+        to reduce the barier of entry that could be science literacy.
+      </p>
+      <p>
+        This way they can make informed decisions where they, or their
+        decendents, should live before they would be impacted.
+      </p>
+      <span>end app demo</span>
+
+      <p>What next?</p>
+      <p>
+        Incorperating live sea level data, regonal predictions, and the Google
+        Maps API, we could provide constantly updating predictions as climate
+        conditions change to more specific areas.
+      </p>
+      <p>
+        We would also like to incorperate additional datasets for other
+        environmental hazards, such as tsunami and droughts, to further increase
+        awareness.
+      </p>
+      <p>
+        Additionally, moving beyond humans we could provide information on
+        endangered animals in a similar fashon with predicted extinction dates.
+      </p>
+    </div>
   </div>
-  <div class="subtitles" *ngIf="showSubtitles.value" @subtitles>
-    <p>With the world population increasing, so does our polution.</p>
-    <p>
-      The increased CO2 emissions results in a greenhouse effect raising the
-      mean tempature of earth.
-    </p>
-    <p>As a result polar ice caps are melting and increasing the sea level.</p>
-
-    <p>Approximately 40% of people live within 100km of the coast.</p>
-    <span
-      >cite:
-      https://sedac.ciesin.columbia.edu/es/papers/Coastal_Zone_Pop_Method.pdf</span
-    >
-    <p>
-      These people are at risk of being displaced due to the receeding
-      coastline.
-    </p>
-    <p>
-      Thus a method to inform them is needed to prevent waves of refugees as
-      they are impacted.
-    </p>
-
-    <span>start showing app demo</span>
-    <p>To address this we have created Fathom.</p>
-    <p>
-      By providing a simple and friendly interface it is designed to be usable
-      by children through to the elderly.
-    </p>
-    <p>
-      The sea level predictions are taken care of by the app behind the scenes
-      to reduce the barier of entry that could be science literacy.
-    </p>
-    <p>
-      This way they can make informed decisions where they, or their decendents,
-      should live before they would be impacted.
-    </p>
-    <span>end app demo</span>
-
-    <p>What next?</p>
-    <p>
-      Incorperating live sea level data, regonal predictions, and the Google
-      Maps API, we could provide constantly updating predictions as climate
-      conditions change to more specific areas.
-    </p>
-    <p>
-      We would also like to incorperate additional datasets for other
-      environmental hazards, such as tsunami and droughts, to further increase
-      awareness.
-    </p>
-    <p>
-      Additionally, moving beyond humans we could provide information on
-      endangered animals in a similar fashon with predicted extinction dates.
-    </p>
+  <div
+    class="demo-settigs"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    *ngIf="!logo"
+  >
+    <mat-checkbox [formControl]="showSubtitles">Subtitles</mat-checkbox>
+    <button matButton (click)="start = true && (logo = 'phase1')">Start</button>
   </div>
-</div>
-<div
-  class="demo-settigs"
-  fxLayout="row"
-  fxLayoutAlign="center center"
-  *ngIf="!logo"
->
-  <mat-checkbox [formControl]="showSubtitles">Subtitles</mat-checkbox>
-  <button matButton (click)="start = true && (logo = 'phase1')">Start</button>
 </div>

@@ -613,7 +613,15 @@ const elasticIn = animate(
         'phase2',
         style({
           opacity: 1,
-          transform: 'scale(1) translate(100vh)'
+          transform: 'scale(1) translateY(110vh)'
+        })
+      ),
+      state(
+        'phase3',
+        style({
+          opacity: 1,
+          'transform-origin': '50% 100%',
+          transform: 'translateY(110vh) scale(0.01)'
         })
       ),
       transition('* => phase1', [
@@ -630,7 +638,20 @@ const elasticIn = animate(
           '2000ms',
           style({
             opacity: 1,
-            transform: 'scale(1) translateY(100vh)'
+            transform: 'scale(1) translateY(110vh)'
+          })
+        )
+      ]),
+      transition('phase2 => phase3', [
+        style({
+          opacity: 1,
+          transform: 'scale(1) translateY(110vh)'
+        }),
+        animate(
+          '200ms',
+          style({
+            'transform-origin': '50% 100%',
+            transform: 'translateY(110vh) scale(0.01)'
           })
         )
       ])
@@ -639,13 +660,13 @@ const elasticIn = animate(
       state(
         'false',
         style({
-          transform: 'translateY(0)'
+          'margin-top': '0'
         })
       ),
       state(
         'true',
         style({
-          transform: 'translateY(-100vh)'
+          'margin-top': '-100vh'
         })
       ),
       transition('false => true', [
@@ -654,10 +675,182 @@ const elasticIn = animate(
           animate(
             '1600ms ease-in-out',
             style({
-              opacity: 1,
-              transform: 'translateY(-100vh)'
+              'margin-top': '-100vh'
             })
           )
+        ])
+      ])
+    ]),
+    trigger('shoreContainer', [
+      state(
+        '*',
+        style({
+          display: 'none'
+        })
+      ),
+      state(
+        'phase1',
+        style({
+          display: 'initial'
+        })
+      )
+    ]),
+    trigger('waterDropSplash', [
+      state(
+        'false',
+        style({
+          opacity: 0,
+          'transform-origin': '69% 80%',
+          transform: 'scale(0.01)'
+        })
+      ),
+      state(
+        'true',
+        style({
+          opacity: 0,
+          'transform-origin': '69% 80%',
+          transform: 'scale(1)'
+        })
+      ),
+      transition('false => true', [
+        group([
+          animate(
+            '500ms ease-in-out',
+            keyframes([
+              style({
+                opacity: 0.0,
+                transform: 'scale(0.01)',
+                offset: 0
+              }),
+              style({
+                opacity: 1.0,
+                transform: 'scale(0.5)',
+                offset: 0.5
+              }),
+              style({
+                opacity: 0.0,
+                transform: 'scale(1)',
+                offset: 1.0
+              })
+            ])
+          ),
+          query('#one', [
+            animate(
+              '500ms ease-in-out',
+              style({
+                transform: 'scaleY(-1) rotateZ(40deg)'
+              })
+            )
+          ]),
+          query('#two', [
+            animate(
+              '500ms ease-in-out',
+              style({
+                transform: 'scaleY(-1) rotateZ(-45deg)'
+              })
+            )
+          ]),
+          query('#three', [
+            animate(
+              '500ms ease-in-out',
+              style({
+                transform: 'scaleY(-1) rotateZ(-50deg)'
+              })
+            )
+          ])
+        ])
+      ])
+    ]),
+    trigger('popInfo', [
+      state(
+        'false',
+        style({
+          opacity: 1
+        })
+      ),
+      state(
+        'true',
+        style({
+          opacity: 0
+        })
+      ),
+      transition('false => true', [
+        animate(
+          '500ms 500ms ease-in-out',
+          style({
+            opacity: 0
+          })
+        )
+      ])
+    ]),
+    trigger('water', [
+      state(
+        'true',
+        style({
+          height: '25vmin'
+        })
+      ),
+      transition('false => true', [
+        style({
+          height: '*'
+        }),
+        animate(
+          '500ms 500ms ease-in-out',
+          style({
+            height: '25vmin'
+          })
+        )
+      ])
+    ]),
+    trigger('refugees', [
+      state(
+        'false',
+        style({
+          opacity: 0
+        })
+      ),
+      state(
+        'true',
+        style({
+          opacity: 0
+        })
+      ),
+      transition('false => true', [
+        style({
+          opacity: 1
+        }),
+        query('.group', [
+          style({
+            opacity: 0
+          }),
+          stagger(200, [
+            group([animate('0.5s', style({ opacity: 1 })), elasticIn])
+          ]),
+          style({
+            opacity: 1
+          }),
+          stagger(50, [
+            group([
+              animate(
+                '1s ease-in-out',
+                style({ transform: 'translateX(-25vmin)' })
+              ),
+              animate(
+                '1s ease-in-out',
+                keyframes([
+                  style({ bottom: 0, offset: 0.0 }),
+                  style({ bottom: '5vmin', offset: 0.125 }),
+                  style({ bottom: 0, offset: 0.25 }),
+                  style({ bottom: '5vmin', offset: 0.375 }),
+                  style({ bottom: 0, offset: 0.5 }),
+                  style({ bottom: '5vmin', offset: 0.625 }),
+                  style({ bottom: 0, offset: 0.75 }),
+                  style({ bottom: '5vmin', offset: 0.875 }),
+                  style({ bottom: 0, offset: 1.0 })
+                ])
+              )
+            ])
+          ])
         ])
       ])
     ]),
@@ -684,6 +877,16 @@ export class AppComponent {
   iceCapsMeltDoneAnimation = false;
   waterDrop: 'phase1' | 'phase2' | 'phase3' = null;
   planetContainer = false;
+
+  shoreContainer: 'phase1' | 'phase2' = null;
+  waterDropSplash = false;
+  popInfo = false;
+
+  water = false;
+
+  refugees = false;
+
+  demo = false;
 
   constructor() {}
 
@@ -739,11 +942,10 @@ export class AppComponent {
   mouthDone() {
     if (this.start && this.waterDrop === 'phase1') {
       this.mouthDoneAnimation = true;
-      console.log(1);
       if (this.sweatingDoneAnimation && this.iceCapsMeltDoneAnimation) {
-        console.log('a');
         this.waterDrop = 'phase2';
         this.planetContainer = true;
+        this.shoreContainer = 'phase1';
       }
     }
   }
@@ -751,11 +953,10 @@ export class AppComponent {
   sweatingDone() {
     if (this.start && this.waterDrop === 'phase1') {
       this.sweatingDoneAnimation = true;
-      console.log(2);
       if (this.mouthDoneAnimation && this.iceCapsMeltDoneAnimation) {
-        console.log('b');
         this.waterDrop = 'phase2';
         this.planetContainer = true;
+        this.shoreContainer = 'phase1';
       }
     }
   }
@@ -763,18 +964,43 @@ export class AppComponent {
   iceCapsMeltDone() {
     if (this.start && this.waterDrop === 'phase1') {
       this.iceCapsMeltDoneAnimation = true;
-      console.log(3);
       if (this.mouthDoneAnimation && this.sweatingDoneAnimation) {
-        console.log('c');
         this.waterDrop = 'phase2';
         this.planetContainer = true;
+        this.shoreContainer = 'phase1';
       }
     }
   }
 
   waterDropDone() {
     if (this.start && this.waterDrop === 'phase2') {
-      // TODO:
+      this.waterDrop = 'phase3';
+      this.waterDropSplash = true;
+      this.popInfo = true;
+    }
+  }
+
+  shoreContainerDone() {
+    if (this.start) {
+      // TODO: Might not need as waterdrop should end after
+    }
+  }
+
+  popInfoDone() {
+    if (this.start && !this.water) {
+      this.water = true;
+    }
+  }
+
+  waterDone() {
+    if (this.start && !this.refugees) {
+      this.refugees = true;
+    }
+  }
+
+  refugeesDone() {
+    if (this.start && !this.demo) {
+      this.demo = true;
     }
   }
 }

@@ -53,7 +53,7 @@ body {
 
   height: 100%;
   color: $fathom-foreground;
-  // background: #1a1b1c;
+  background: #1a1b1c;
 }
 body {
   margin: 0;
@@ -66,6 +66,8 @@ body {
   // padding-right: calc(50vw - #{$fathom-app-width} / 2);
   // min-height: $fathom-app-height;
   // min-width: $fathom-app-width;
+
+  // background: rgb(38, 38, 40);
 }
 
 .screen-size-notice {

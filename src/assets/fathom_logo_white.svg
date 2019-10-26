@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="180"
+   viewBox="0 0 211.66666 47.625001"
+   version="1.1"
+   id="svg2700"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="fathom_logo_white.svg">
+  <defs
+     id="defs2694" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="371.42923"
+     inkscape:cy="156.99493"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1853"
+     inkscape:window-height="1025"
+     inkscape:window-x="67"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3257" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata2697">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-249.37499)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="7.5557261"
+       y="289.45566"
+       id="text2704"><tspan
+         sodipodi:role="line"
+         id="tspan2702"
+         x="7.5557261"
+         y="289.45566"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:42.33333206px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.26458332;fill:#ffffff;fill-opacity:1;">FATHOM</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="42.161766"
+       y="301.00903"
+       id="text2708"><tspan
+         sodipodi:role="line"
+         id="tspan2706"
+         x="42.161766"
+         y="310.3728"
+         style="stroke-width:0.26458332"></tspan></text>
+    <path
+       style="fill:#005cc2;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 36.442259,276.98246 c 0,0 1.86543,-1.05834 4.942335,-1.05834 3.076905,0 8.12016,3.11059 11.944803,3.17519 3.824643,0.0646 6.419608,-1.58786 6.419608,-1.58786 l 2.449355,6.61476 c 0,0 -3.613639,0.82573 -8.907516,0.79375 -5.293877,-0.032 -8.918216,-2.64583 -11.90625,-2.64583 -2.988035,0 -7.591094,1.85208 -7.591094,1.85208 z"
+       id="path2712"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czzcczzcc" />
+    <path
+       style="fill:#489fff;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 59.5496,276.98246 c 0,0 -1.86543,-1.05834 -4.942335,-1.05834 -3.076905,0 -8.12016,3.11059 -11.944803,3.17519 -3.824643,0.0646 -6.419608,-1.58786 -6.419608,-1.58786 l -2.449355,6.61476 c 0,0 3.613639,0.82573 8.907516,0.79375 5.293877,-0.032 8.918216,-2.64583 11.90625,-2.64583 2.988034,0 7.591094,1.85208 7.591094,1.85208 z"
+       id="path2712-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czzcczzcc" />
+  </g>
+</svg>
