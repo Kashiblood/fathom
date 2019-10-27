@@ -105,7 +105,11 @@
           [@planetContainer]="planetContainer"
         >
           <div class="polution-stats" [@polutionStats]="polutionStats">
-            <p class="mat-display-2" fxLayout="column">
+            <p
+              class="mat-display-2"
+              fxLayout="column"
+              fxLayoutAlign="center before"
+            >
               <span>↑CO2</span>
               <!-- <span>=</span> -->
               <span>↑Temperature</span>
@@ -560,7 +564,7 @@
         <p class="mat-display-3">- Tsunami</p>
         <p class="mat-display-3">- Endangered Animals</p>
       </div>
-      <div class="text-panel"></div>
+      <!-- <div class="text-panel"></div> -->
     </div>
     <div fxLayoutAlign="center center" fxFlex>
       <div
@@ -569,6 +573,15 @@
         style="background: pink; border-radius: 32px; width: 375px; height: 812px;"
       ></div>
     </div>
+  </div>
+  <div
+    class="app-link"
+    [@appLink]="appLink"
+    fxLayoutAlign="center center"
+    fxLayout="column"
+  >
+    <p class="mat-display-4">Checkout Our App Yourself!</p>
+    <p class="mat-display-2">https://kashiblood.github.io/fathom/fathom</p>
   </div>
   <div
     class="demo-settigs"

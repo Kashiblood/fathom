@@ -944,7 +944,7 @@ const elasticIn = animate(
             { optional: true }
           ),
           query('.text-panel', [
-            stagger('3s', [
+            stagger('4s', [
               animate(
                 '300ms',
                 style({
@@ -1077,6 +1077,28 @@ const elasticIn = animate(
         ])
       ])
     ]),
+    trigger('appLink', [
+      state(
+        'false',
+        style({
+          'clip-path': 'circle(0%)'
+        })
+      ),
+      state(
+        'true',
+        style({
+          'clip-path': 'circle(100%)'
+        })
+      ),
+      transition('* => true', [
+        animate(
+          '300ms ease-in-out',
+          style({
+            'clip-path': 'circle(100%)'
+          })
+        )
+      ])
+    ]),
     trigger('subtitles', [])
   ]
 })
@@ -1114,6 +1136,7 @@ export class AppComponent {
 
   demoScreen = false;
   app = false;
+  appLink = false;
 
   constructor() {}
 
@@ -1240,8 +1263,8 @@ export class AppComponent {
   }
 
   demoScreenDone() {
-    if (this.start && !this.app) {
-      // this.app = true;
+    if (this.start && !this.appLink) {
+      this.appLink = true;
     }
   }
 }
