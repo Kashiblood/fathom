@@ -306,3 +306,28 @@
     }
   }
 }
+
+.demo-screen {
+  & .text-area {
+    overflow: hidden;
+    position: relative;
+    padding: 2vmin;
+
+    > * {
+      margin: 5vmin;
+    }
+
+    & p {
+      font-weight: bold;
+      color: white;
+    }
+
+    &:after {
+      content: '';
+      box-shadow: inset 0px 0px 2vmin 3vmin #1a1b1c;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+  }
+}

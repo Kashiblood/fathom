@@ -902,6 +902,33 @@ const elasticIn = animate(
         )
       ])
     ]),
+    trigger('demoScreen', [
+      state(
+        'false',
+        style({
+          opacity: 0,
+          display: 'none'
+        })
+      ),
+      state(
+        'true',
+        style({
+          opacity: 1,
+          display: 'flex'
+        })
+      ),
+      transition('false => true', [
+        style({
+          display: 'flex'
+        }),
+        animate(
+          '1000ms ease-in-out',
+          style({
+            opacity: 1
+          })
+        )
+      ])
+    ]),
     trigger('subtitles', [])
   ]
 })
@@ -936,6 +963,8 @@ export class AppComponent {
   refugees = false;
 
   issueScreen = false;
+
+  demoScreen = false;
 
   constructor() {}
 
@@ -1055,7 +1084,8 @@ export class AppComponent {
   }
 
   issueScreenDone() {
-    if (this.start) {
+    if (this.start && !this.demoScreen) {
+      this.demoScreen = true;
     }
   }
 }
