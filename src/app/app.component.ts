@@ -336,7 +336,6 @@ const elasticIn = animate(
         )
       ])
     ]),
-
     trigger('earth', [
       state(
         '*',
@@ -926,7 +925,156 @@ const elasticIn = animate(
           style({
             opacity: 1
           })
-        )
+        ),
+        group([
+          query('@app', [animateChild()]),
+          query(
+            '.text-panel img',
+            [
+              style({
+                opacity: 0
+              }),
+              animate(
+                '300ms 2000ms',
+                style({
+                  opacity: 1
+                })
+              )
+            ],
+            { optional: true }
+          ),
+          query('.text-panel', [
+            stagger('3s', [
+              animate(
+                '300ms',
+                style({
+                  'margin-left': '-100%'
+                })
+              )
+              // style({
+              //   'margin-left': '-100%'
+              // }),
+              // group([
+              //   style({
+              //     opacity: 0
+              //   }),
+              //   query('.mat-display-4', [
+              //     animate(
+              //       '300ms',
+              //       style({
+              //         opacity: 1
+              //       })
+              //     )
+              //   ]),
+              //   query(
+              //     '.mat-display-3',
+              //     [
+              //       style({
+              //         opacity: 0
+              //       }),
+              //       stagger('200ms 300ms', [
+              //         animate(
+              //           '300ms',
+              //           style({
+              //             opacity: 1
+              //           })
+              //         )
+              //       ])
+              //     ],
+              //     { optional: true }
+              //   )
+              // ])
+            ]),
+            style({
+              opacity: 0
+            })
+          ])
+        ])
+      ])
+    ]),
+    trigger('app', [
+      state(
+        '*',
+        style({
+          opacity: 0
+        })
+      ),
+      state(
+        'true',
+        style({
+          opacity: 1
+        })
+      ),
+      transition('* => true', [
+        group([
+          animate(
+            '1000ms 2000ms',
+            style({
+              opacity: 1
+            })
+          ),
+          animate(
+            '2000ms 2000ms',
+            keyframes([
+              style({
+                transform: 'scale(0.01)',
+                offset: 0
+              }),
+              style({
+                transform: 'scale(1.37)',
+                offset: 0.14
+              }),
+              style({
+                transform: 'scale(0.87)',
+                offset: 0.28
+              }),
+              style({
+                transform: 'scale(1.04)',
+                offset: 0.42
+              }),
+              style({
+                transform: 'scale(1.05)',
+                offset: 0.44
+              }),
+              style({
+                transform: 'scale(0.98)',
+                offset: 0.58
+              }),
+              style({
+                transform: 'scale(0.98)',
+                offset: 0.6
+              }),
+              style({
+                transform: 'scale(1.01)',
+                offset: 0.72
+              }),
+              style({
+                transform: 'scale(1.01)',
+                offset: 0.74
+              }),
+              style({
+                transform: 'scale(1.0)',
+                offset: 0.82
+              }),
+              style({
+                transform: 'scale(1.0)',
+                offset: 0.86
+              }),
+              style({
+                transform: 'scale(1.0)',
+                offset: 0.92
+              }),
+              style({
+                transform: 'scale(1.0)',
+                offset: 0.96
+              }),
+              style({
+                transform: 'scale(1.0)',
+                offset: 1
+              })
+            ])
+          )
+        ])
       ])
     ]),
     trigger('subtitles', [])
@@ -965,6 +1113,7 @@ export class AppComponent {
   issueScreen = false;
 
   demoScreen = false;
+  app = false;
 
   constructor() {}
 
@@ -1086,6 +1235,13 @@ export class AppComponent {
   issueScreenDone() {
     if (this.start && !this.demoScreen) {
       this.demoScreen = true;
+      this.app = true;
+    }
+  }
+
+  demoScreenDone() {
+    if (this.start && !this.app) {
+      // this.app = true;
     }
   }
 }

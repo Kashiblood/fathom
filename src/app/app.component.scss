@@ -308,13 +308,31 @@
 }
 
 .demo-screen {
+  max-height: 100%;
+
   & .text-area {
     overflow: hidden;
     position: relative;
-    padding: 2vmin;
 
-    > * {
-      margin: 5vmin;
+    > .text-panel {
+      padding: 5vmin;
+      min-width: 100%;
+      box-sizing: border-box;
+      position: relative;
+
+      & .child-pic {
+        top: 30%;
+        right: 20%;
+        width: 30%;
+        position: absolute;
+      }
+
+      & .granny-pic {
+        top: 40%;
+        right: 40%;
+        width: 30%;
+        position: absolute;
+      }
     }
 
     & p {
@@ -328,6 +346,7 @@
       width: 100%;
       height: 100%;
       position: absolute;
+      top: 0;
     }
   }
 }

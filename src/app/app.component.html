@@ -508,19 +508,64 @@
       </p>
     </div>
   </div>
-  <div class="demo-screen" fxFlex fxLayout="row" [@demoScreen]="demoScreen">
-    <div class="text-area" fxFlex>
-      <div id="one">
+  <div
+    class="demo-screen"
+    fxFlex
+    fxLayout="row"
+    [@demoScreen]="demoScreen"
+    (@demoScreen.done)="demoScreenDone()"
+  >
+    <div class="text-area" fxFlex fxLayout="row">
+      <div class="text-panel"></div>
+      <div id="one" class="text-panel">
         <p class="mat-display-4">Solution?</p>
         <!-- <p class="mat-display-3">Fathom</p> -->
         <img src="../assets/fathom_logo_white.svg" />
       </div>
-      <div id="two"></div>
-      <div id="three"></div>
-      <div id="four"></div>
+      <div id="two" class="text-panel">
+        <p class="mat-display-4">Features:</p>
+        <p class="mat-display-3">- View Predictively Affected Areas</p>
+        <p class="mat-display-3">- 80 Year Prediction</p>
+        <p class="mat-display-3">- 30 Years of Historical Data</p>
+      </div>
+      <div id="two" class="text-panel">
+        <p class="mat-display-4">Simple to Use User Interface:</p>
+        <p class="mat-display-3">- Children</p>
+        <p class="mat-display-3">- Elderly</p>
+        <img class="child-pic" src="../assets/outsourced/child/child.svg" />
+        <img class="granny-pic" src="../assets/outsourced/granny/granny.svg" />
+      </div>
+      <div id="three" class="text-panel">
+        <p class="mat-display-4">Low Barrier of Entry:</p>
+        <p class="mat-display-3">- Predictive Models Behinde the Scenes</p>
+        <p class="mat-display-3">- Do Not Need to be Science Literate</p>
+      </div>
+      <div id="four" class="text-panel">
+        <p class="mat-display-4">What Next?:</p>
+        <p class="mat-display-3">- Live Sea Level Data</p>
+        <p class="mat-display-3">- Continuously Updating Predictive Models</p>
+        <p class="mat-display-3">- Regional Data</p>
+      </div>
+      <div id="five" class="text-panel">
+        <p _ngcontent-pwh-c0="" class="mat-display-4">
+          More Datasets:
+          <br />
+          <span class="mat-display-2" style="display: block;"
+            >(What Next? Continued):</span
+          >
+        </p>
+        <p class="mat-display-3">- Droughts</p>
+        <p class="mat-display-3">- Earthquakes</p>
+        <p class="mat-display-3">- Volcanoes</p>
+        <p class="mat-display-3">- Tsunami</p>
+        <p class="mat-display-3">- Endangered Animals</p>
+      </div>
+      <div class="text-panel"></div>
     </div>
     <div fxLayoutAlign="center center" fxFlex>
       <div
+        class="app"
+        [@app]="app"
         style="background: pink; border-radius: 32px; width: 375px; height: 812px;"
       ></div>
     </div>
