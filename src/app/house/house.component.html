@@ -72,9 +72,9 @@
         [ngStyle]="{
           height:
             postalCode.valid && !loading && !preloading
-              ? 'calc(50vh - 48px - ' +
+              ? 'calc(812px / 2 - 48px - ' +
                 (locationData | async)?.elevation * pixelsPerMeter +
-                'px - 30px'
+                'px + 20px'
               : 0
         }"
         fxLayoutAlign="center"
