@@ -524,7 +524,7 @@
       <div id="one" class="text-panel">
         <p class="mat-display-4">Solution?</p>
         <!-- <p class="mat-display-3">Fathom</p> -->
-        <img src="../assets/fathom_logo_white.svg" />
+        <img src="../assets/fathom_logo_white_clean.svg" />
       </div>
       <div id="two" class="text-panel">
         <p class="mat-display-4">Features:</p>
@@ -536,12 +536,13 @@
         <p class="mat-display-4">Simple to Use User Interface:</p>
         <p class="mat-display-3">- Children</p>
         <p class="mat-display-3">- Elderly</p>
+        <p class="mat-display-3">- Everyone!</p>
         <img class="child-pic" src="../assets/outsourced/child/child.svg" />
         <img class="granny-pic" src="../assets/outsourced/granny/granny.svg" />
       </div>
       <div id="three" class="text-panel">
         <p class="mat-display-4">Low Barrier of Entry:</p>
-        <p class="mat-display-3">- Predictive Models Behinde the Scenes</p>
+        <p class="mat-display-3">- Predictive Models Behind the Scenes</p>
         <p class="mat-display-3">- Do Not Need to be Science Literate</p>
       </div>
       <div id="four" class="text-panel">
@@ -551,11 +552,11 @@
         <p class="mat-display-3">- Regional Data</p>
       </div>
       <div id="five" class="text-panel">
-        <p _ngcontent-pwh-c0="" class="mat-display-4">
+        <p class="mat-display-4" style="white-space: nowrap;">
           More Datasets:
           <br />
           <span class="mat-display-2" style="display: block;"
-            >(What Next? Continued):</span
+            >(What Next? Continued)</span
           >
         </p>
         <p class="mat-display-3">- Droughts</p>
@@ -567,11 +568,20 @@
       <!-- <div class="text-panel"></div> -->
     </div>
     <div fxLayoutAlign="center center" fxFlex>
-      <div
+      <!-- <div
         class="app"
         [@app]="app"
         style="background: pink; border-radius: 32px; width: 375px; height: 812px;"
-      ></div>
+      ></div> -->
+      <!-- <video class="app" [@app]="app" width="375" height="812" autoplay>
+        <source src="../assets/Untitled.mp4" />
+      </video> -->
+      <iframe
+        class="app"
+        [@app]="app"
+        src="https://kashiblood.github.io/fathom/fathom"
+        style="width: 375px; height: 812px"
+      ></iframe>
     </div>
   </div>
   <div
@@ -580,7 +590,7 @@
     fxLayoutAlign="center center"
     fxLayout="column"
   >
-    <p class="mat-display-4">Checkout Our App Yourself!</p>
+    <p class="mat-display-4">Check Out Our App Yourself!</p>
     <p class="mat-display-2">https://kashiblood.github.io/fathom/fathom</p>
   </div>
   <div

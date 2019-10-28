@@ -8,7 +8,7 @@ import {
   state,
   style,
   transition,
-  trigger,
+  trigger
 } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -996,28 +996,28 @@ const elasticIn = animate(
       state(
         '*',
         style({
-          opacity: 0
+          // opacity: 0
         })
       ),
       state(
         'true',
         style({
-          opacity: 1
+          // opacity: 1
         })
       ),
       transition('* => true', [
         group([
-          animate(
-            '1000ms 2000ms',
-            style({
-              opacity: 1
-            })
-          ),
+          // animate(
+          //   '2000ms 0ms',
+          //   style({
+          //     opacity: 1
+          //   })
+          // ),
           animate(
             '2000ms 2000ms',
             keyframes([
               style({
-                transform: 'scale(0.01)',
+                transform: 'scale(0)',
                 offset: 0
               }),
               style({
