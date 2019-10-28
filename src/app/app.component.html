@@ -568,19 +568,13 @@
       <!-- <div class="text-panel"></div> -->
     </div>
     <div fxLayoutAlign="center center" fxFlex>
-      <!-- <div
-        class="app"
-        [@app]="app"
-        style="background: pink; border-radius: 32px; width: 375px; height: 812px;"
-      ></div> -->
-      <!-- <video class="app" [@app]="app" width="375" height="812" autoplay>
-        <source src="../assets/Untitled.mp4" />
-      </video> -->
       <iframe
+        *ngIf="app"
+        src="https://kashiblood.github.io/fathom/fathom"
+        frameBorder="0"
         class="app"
         [@app]="app"
-        src="https://kashiblood.github.io/fathom/fathom"
-        style="width: 375px; height: 812px"
+        style="border-radius: 32px; width: 375px; height: 812px"
       ></iframe>
     </div>
   </div>
