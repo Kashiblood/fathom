@@ -567,11 +567,14 @@
       <!-- <div class="text-panel"></div> -->
     </div>
     <div fxLayoutAlign="center center" fxFlex>
-      <div
+      <iframe
+        *ngIf="app"
+        src="https://kashiblood.github.io/fathom/fathom"
+        frameBorder="0"
         class="app"
         [@app]="app"
-        style="background: pink; border-radius: 32px; width: 375px; height: 812px;"
-      ></div>
+        style="border-radius: 32px; width: 375px; height: 812px"
+      ></iframe>
     </div>
   </div>
   <div

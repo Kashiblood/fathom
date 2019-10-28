@@ -309,6 +309,7 @@
 
 .demo-screen {
   max-height: 100%;
+  z-index: 1;
 
   & .text-area {
     overflow: hidden;
@@ -356,6 +357,7 @@
   width: 100%;
   height: 100%;
   background: $fathom-primary-color;
+  z-index: 1;
 
   & p {
     color: white;
